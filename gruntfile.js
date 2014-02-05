@@ -29,7 +29,6 @@ module.exports = function(grunt) {
         },
         files: {
             'build/css/style.css': 'assets/sass/style.scss',
-            'build/css/page.css': 'assets/sass/page.scss',
         }
       },
       build: {
@@ -38,7 +37,6 @@ module.exports = function(grunt) {
         },
         files: {
             'build/css/style.css': 'assets/sass/style.scss',
-            'build/css/page.css': 'assets/sass/page.scss',
         }
       }
     },
