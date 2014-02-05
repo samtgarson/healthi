@@ -79,7 +79,7 @@ module.exports = function(grunt) {
   });
  
   // build
-  grunt.registerTask('default', ['uglify', 'sass:build', 'imagemin']);
+  grunt.registerTask('default', ['uglify', 'sass:build', 'imagemin', 'watch']);
 
  
  
