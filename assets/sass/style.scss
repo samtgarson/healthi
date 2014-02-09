@@ -13,6 +13,7 @@ $pink: #FF4A98;
 $green-shadow: #00A869;
 $dark-grey: #2D2D2D;
 $light-grey: #DDDDDD;
+$shadow-width: 3;
 
 .icon {
     font-family: 'icomoon';
@@ -56,6 +57,7 @@ nav {
     overflow: hidden;
     position: relative;
     z-index: -1;
+    border-bottom: #{$shadow-width}px solid $green-shadow;
 
     &:after{
         content: '';
@@ -72,9 +74,11 @@ nav {
         left: 50%;
         margin-left: -40px;
         position: absolute;
+        cursor: pointer;
+        height: 69px;
 
         li {
-            float: left;
+            display: inline-block;
             width: 80px;
             padding-top: 24px;
             text-align: center;
@@ -95,7 +99,7 @@ nav {
     background-color: white;
     color: $pink;
     margin: 0 auto;
-    margin-top: -69px;
+    margin-top: -#{69 + $shadow-width}px;
     overflow: hidden;
     z-index: 4;
     pointer-events:none;
@@ -117,5 +121,12 @@ nav {
                 padding-top: 24px;
             }
         }
+    }
+}
+.content {
+    position: relative;
+    ul {
+        position: absolute;
+        left: 20px;
     }
 }

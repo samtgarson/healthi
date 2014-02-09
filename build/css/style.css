@@ -120,6 +120,7 @@ nav h1 {
   overflow: hidden;
   position: relative;
   z-index: -1;
+  border-bottom: 3px solid #00a869;
 }
 .slider-nav:after {
   content: '';
@@ -135,9 +136,11 @@ nav h1 {
   left: 50%;
   margin-left: -40px;
   position: absolute;
+  cursor: pointer;
+  height: 69px;
 }
 .slider-nav ul li {
-  float: left;
+  display: inline-block;
   width: 80px;
   padding-top: 24px;
   text-align: center;
@@ -156,7 +159,7 @@ nav h1 {
   background-color: white;
   color: #ff4a98;
   margin: 0 auto;
-  margin-top: -69px;
+  margin-top: -72px;
   overflow: hidden;
   z-index: 4;
   pointer-events: none;
@@ -176,4 +179,12 @@ nav h1 {
 .selector ul li.icon {
   font-size: 1.4em;
   padding-top: 24px;
+}
+
+.content {
+  position: relative;
+}
+.content ul {
+  position: absolute;
+  left: 20px;
 }
