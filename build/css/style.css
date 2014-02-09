@@ -86,6 +86,7 @@ input, select {
 h1, h2, h3, h4, h5, h6 {
   padding: 0;
   margin: 0;
+  font-weight: 100;
 }
 
 body {
@@ -117,9 +118,23 @@ nav h1 {
   height: 69px;
   width: 100%;
   overflow: hidden;
+  position: relative;
+  z-index: -1;
+}
+.slider-nav:after {
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 10px 9px 0 9px;
+  border-color: blue transparent transparent transparent;
+  top: 69px;
 }
 .slider-nav ul {
   width: 150%;
+  left: 50%;
+  margin-left: -40px;
+  position: absolute;
 }
 .slider-nav ul li {
   float: left;
@@ -143,6 +158,8 @@ nav h1 {
   margin: 0 auto;
   margin-top: -69px;
   overflow: hidden;
+  z-index: 4;
+  pointer-events: none;
 }
 .selector ul {
   width: 400%;
@@ -155,4 +172,8 @@ nav h1 {
   vertical-align: middle;
   border: 1px soild white;
   font-size: 1.8em;
+}
+.selector ul li.icon {
+  font-size: 1.4em;
+  padding-top: 24px;
 }
