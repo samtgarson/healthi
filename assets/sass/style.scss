@@ -1,10 +1,98 @@
 @import 'reset';
 
-
 @mixin gradient($from, $to, $dist) {
 	background-image: -o-linear-gradient(-90deg, $from 0%, $to $dist);
 	background-image: -moz-linear-gradient(-90deg, $from 0%, $to $dist);
 	background-image: -webkit-linear-gradient(-90deg, $from 0%, $to $dist);
 	background-image: -ms-linear-gradient(-90deg, $from 0%, $to $dist);
 	background-image: linear-gradient(-180deg, $from 0%, $to $dist);
+}
+
+$green: #00BD76;
+$pink: #FF4A98;
+$green-shadow: #00A869;
+$dark-grey: #2D2D2D;
+$light-grey: #DDDDDD;
+
+.icon {
+    font-family: 'icomoon';
+    font-size: 2em;
+    vertical-align: middle;
+}
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    background-color: $green;
+    color: white;
+    font: 100 16px/20px "Gotham Rounded", sans-serif;
+}
+nav {
+    width: 100%;
+    height: 44px;
+    padding: 8px;
+    box-sizing: border-box;
+    position: relative;
+
+    a#menu {
+        display: inline-block;
+    }
+    h1 {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 10px
+    }
+}
+.slider-nav {
+    background-color: $dark-grey;
+    height: 69px;
+    width: 100%;
+    overflow: hidden;
+
+    ul {
+        width: 150%;
+
+        li {
+            float: left;
+            width: 80px;
+            padding-top: 24px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px soild white;
+            font-size: 1.8em;
+
+            &.icon {
+                font-size: 1.4em;
+                padding-top: 24px;
+            }
+        }
+    }
+}
+.selector {
+    width: 80px;
+    height: 69px;
+    background-color: white;
+    color: $pink;
+    margin: 0 auto;
+    margin-top: -69px;
+    overflow: hidden;
+
+    ul {
+        width: 400%;
+
+        li {
+            float: left;
+            width: 80px;
+            padding-top: 24px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px soild white;
+            font-size: 1.8em;
+        }
+    }
 }
