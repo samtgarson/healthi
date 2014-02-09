@@ -13,7 +13,19 @@ module.exports = function(grunt) {
     //Minify JS
 
     uglify: {
+      dev: {
+        options : {
+          mangle: false,
+          beautify: true
+        },
+        files: {
+          'build/js/script.min.js': ['assets/js/*.js']
+        }
+      },
       build: {
+        options: {
+          compress: true
+        },
         files: {
           'build/js/script.min.js': ['assets/js/*.js']
         }
@@ -60,9 +72,10 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
           files: ['assets/js/*.js'],
-          tasks: ['uglify'],
+          tasks: ['uglify:dev'],
           options: {
               spawn: false,
+              livereload: true
           },
       },
 
@@ -79,7 +92,7 @@ module.exports = function(grunt) {
   });
  
   // build
-  grunt.registerTask('default', ['uglify', 'sass:build', 'imagemin', 'watch']);
+  grunt.registerTask('default', ['uglify:build', 'sass:build', 'imagemin']);
 
  
  

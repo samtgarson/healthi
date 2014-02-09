@@ -14,6 +14,7 @@ $green-shadow: #00A869;
 $dark-grey: #2D2D2D;
 $light-grey: #DDDDDD;
 $shadow-width: 3;
+$slider-li-width: 75;
 
 .icon {
     font-family: 'icomoon';
@@ -26,9 +27,9 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 100;
 }
 
-
 body {
     background-color: $green;
+    overflow: hidden;
     color: white;
     font: 100 16px/20px "Gotham Rounded", sans-serif;
 }
@@ -43,20 +44,23 @@ nav {
         display: inline-block;
     }
     h1 {
-        height: 100%;
-        position: absolute;
-        width: 100%;
         text-align: center;
-        top: 10px
+        margin-top: -1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 1em;
     }
 }
+
+
+
 .slider-nav {
     background-color: $dark-grey;
     height: 69px;
     width: 100%;
     overflow: hidden;
     position: relative;
-    z-index: -1;
+    z-index: 0;
     border-bottom: #{$shadow-width}px solid $green-shadow;
 
     &:after{
@@ -70,7 +74,7 @@ nav {
     }
 
     ul {
-        width: 150%;
+        width: ($slider-li-width * 4) + 20px;
         left: 50%;
         margin-left: -40px;
         position: absolute;
@@ -79,7 +83,7 @@ nav {
 
         li {
             display: inline-block;
-            width: 80px;
+            width: #{$slider-li-width}px;
             padding-top: 24px;
             text-align: center;
             vertical-align: middle;
@@ -94,7 +98,7 @@ nav {
     }
 }
 .selector {
-    width: 80px;
+    width: #{$slider-li-width}px;
     height: 69px;
     background-color: white;
     color: $pink;
@@ -103,13 +107,14 @@ nav {
     overflow: hidden;
     z-index: 4;
     pointer-events:none;
+    position: relative;
 
     ul {
-        width: 400%;
+        width: 450%;
 
         li {
-            float: left;
-            width: 80px;
+            display: inline-block;
+            width: #{$slider-li-width}px;
             padding-top: 24px;
             text-align: center;
             vertical-align: middle;
@@ -123,10 +128,49 @@ nav {
         }
     }
 }
-.content {
-    position: relative;
+
+footer {
+    background: white;
+    color: $dark-grey;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    font-size: 0.8em;
+    height: 12em;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    border-top: #{$shadow-width}px solid $green-shadow;
+
     ul {
-        position: absolute;
-        left: 20px;
+        padding: 0 1.4em;
+
+        li {
+            height: 4em;
+            line-height: 4em;
+            vertical-align: middle;
+            border-bottom: 1px solid $light-grey;
+
+            &:after {
+                @extend .icon;
+                content: 'r';
+                color: $light-grey;
+                position: absolute;
+                right: .5em;
+                font-size: 2.4em;
+            }
+
+            span {
+                color: $pink;
+                font-weight: 500;
+            }
+
+            img {
+                height: 2.4em;
+                width: 2.4em;
+                margin-right: 1em;
+                border-radius: 30px;
+                vertical-align: middle;
+            }
+        }
     }
 }
