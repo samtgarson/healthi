@@ -9,12 +9,36 @@ $(document).ready(function() {
         cssEaseDuration: 300,
         cssEaseString: 'easeOutExpo',
         useCSSTranslation: false,
-        shouldEase: false
+        shouldEase: false,
+        callIfNotStarted: []
     });
 
-    $('.slider-nav li').click(function () {
-    	slideNav($(this).index())
-    })
+    $('.slider-content').pep({
+        axis: 'x',
+        velocityMultiplier: 0,
+        removeMargins: false,
+        stop: dragStop,
+        drag: pageDragDuring,
+        cssEaseDuration: 300,
+        cssEaseString: 'easeOutExpo',
+        useCSSTranslation: false,
+        shouldEase: false,
+        callIfNotStarted: []
+    });
+
+    var dragged =  0;
+    $('.slider-nav li')
+    	.on('touchstart mousedown', function () {
+    		dragged = 0;
+	    	$(this).on('touchmove mousemove', function () {
+	    		dragged = 1
+	    	});
+	    })
+	    .on('touchend mouseup', function () {
+	    	if (!dragged) {
+	    		slideAll($(this).index())
+	    	}
+	    })
 });
 // function nearest(a, n) {
 // 	var curr = a[0]
@@ -27,19 +51,31 @@ $(document).ready(function() {
 // 	}
 // }
 function dragStop() {
-	var a = [0, -79, -158, -237];
-	var n = parseInt($('.selector ul').css('marginLeft'));
-	var r = nearest(n, a)
-	var m = $('body').width()/2 + r
-	var e = 'easeOutExpo';
+	var ease = 'easeOutExpo';
 	var time = 700
 
+	var navArray = [0, -79, -158, -237];
+	var navTarget = parseInt($('.selector ul').css('marginLeft'));
+	var navResult = nearest(navTarget, navArray)
+	var navMargin = $('body').width()/2 + navResult
+	
+	var pageArray = [0, -100, -200, -300]
+	var pageTarget = parseInt($('.slider-content').css('left')) / $('.slider-content').width();
+	var pageResult = nearest(pageTarget * 400, pageArray)
+	var pageMargin = pageResult + '%'
+
+	
+
 	$('.selector ul').animate({
-		marginLeft: r
-	}, time, e)
+		marginLeft: navResult
+	}, time, ease)
 	$('.slider-nav ul').animate({
-		left: m
-	}, time, e)
+		left: navMargin
+	}, time, ease)
+	$('.slider-content').animate({
+		left: pageMargin
+	}, time, ease)
+
 
 	return false;
 
@@ -48,18 +84,44 @@ function dragDuring() {
 	var l = parseInt($('.slider-nav ul').css('left')) - $('body').width()/2
 
 	$('.selector ul').css('marginLeft', l-2);	
+
+	var dragPercent = parseFloat($('.selector ul').css('margin-left')) / $('.slider-nav ul').width()
+	var pageMargin = $('.slider-content').width() * dragPercent
+
+	$('.slider-content').css('left', pageMargin)
 }
+
+function pageDragDuring() {
+	var bodyW = $('body').width()/2;
+	var dragPercent = parseInt($('.slider-content').css('left')) / $('.slider-content').width() ;
+	var selectMargin = (dragPercent * $('.slider-nav ul').width())
+	var navMargin = bodyW  + selectMargin
+
+	console.log(dragPercent)
+
+	$('.slider-nav ul').css('left', navMargin)
+	$('.selector ul').css('marginLeft', selectMargin-2);	
+
+}
+
 function nearest (num, arr) {
 	var res = arr.reduce(function (prev, curr) {
     return (Math.abs(curr - num) < Math.abs(prev - num) ? curr : prev);
 	});
 	return res
 }
-function slideNav (index) {
+function slideAll (index) {
 	var r = index * -79
 	var m = $('body').width()/2 + r
 	var e = 'easeOutExpo';
 	var time = 700
+
+	var pageMargin = index * 100
+	console.log()
+
+	$('.slider-content').animate({
+		left: '-' + pageMargin + '%'
+	}, time, e)
 
 	$('.selector ul').animate({
 		marginLeft: r

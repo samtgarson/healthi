@@ -10,11 +10,13 @@
 
 $green: #00BD76;
 $pink: #FF4A98;
-$green-shadow: #00A869;
+$dark-green: #00A869;
 $dark-grey: #2D2D2D;
 $light-grey: #DDDDDD;
 $shadow-width: 3;
 $slider-li-width: 75;
+$content-count: 4;
+$light-green: #51CA8C;
 
 .icon {
     font-family: 'icomoon';
@@ -27,6 +29,9 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 100;
 }
 
+html {
+    overflow: hidden;
+}
 body {
     background-color: $green;
     overflow: hidden;
@@ -61,7 +66,7 @@ nav {
     overflow: hidden;
     position: relative;
     z-index: 0;
-    border-bottom: #{$shadow-width}px solid $green-shadow;
+    border-bottom: #{$shadow-width}px solid $dark-green;
 
     &:after{
         content: '';
@@ -129,6 +134,23 @@ nav {
     }
 }
 
+.slider-content {
+    width: 100% * $content-count;
+
+    .slidee {
+        display: inline-block;
+        width: 99% / ($content-count);
+        padding-top: 10px;
+
+        .module {
+            border-radius: 10px;
+            background-color: $light-green;
+            margin: 10px;
+            padding: 10px;
+        }
+    }
+}
+
 footer {
     background: white;
     color: $dark-grey;
@@ -139,7 +161,7 @@ footer {
     height: 12em;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
-    border-top: #{$shadow-width}px solid $green-shadow;
+    border-top: #{$shadow-width}px solid $dark-green;
 
     ul {
         padding: 0 1.4em;

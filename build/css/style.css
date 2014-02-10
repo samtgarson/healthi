@@ -89,6 +89,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 100;
 }
 
+html {
+  overflow: hidden;
+}
+
 body {
   background-color: #00bd76;
   overflow: hidden;
@@ -181,6 +185,21 @@ nav h1 {
 .selector ul li.icon, .selector footer ul li:after, footer .selector ul li:after {
   font-size: 1.4em;
   padding-top: 24px;
+}
+
+.slider-content {
+  width: 400%;
+}
+.slider-content .slidee {
+  display: inline-block;
+  width: 24.75%;
+  padding-top: 10px;
+}
+.slider-content .slidee .module {
+  border-radius: 10px;
+  background-color: #51ca8c;
+  margin: 10px;
+  padding: 10px;
 }
 
 footer {
