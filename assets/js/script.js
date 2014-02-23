@@ -17,7 +17,7 @@ $(document).ready(function() {
         axis: 'x',
         velocityMultiplier: 0,
         removeMargins: false,
-        stop: dragStop,
+        stop: pageDragStop,
         drag: pageDragDuring,
         cssEaseDuration: 300,
         cssEaseString: 'easeOutExpo',
@@ -56,26 +56,23 @@ function dragStop() {
 
 	var navArray = [0, -79, -158, -237];
 	var navTarget = parseInt($('.selector ul').css('marginLeft'));
-	var navResult = nearest(navTarget, navArray)
-	var navMargin = $('body').width()/2 + navResult
+	var navIndex = nearest(navTarget, navArray)[1]
+	// var navMargin = $('body').width()/2 + navResult
+	
+	slideAll(navIndex)	
+
+	return false;
+
+}
+function pageDragStop() {
+	var ease = 'easeOutExpo';
+	var time = 700
 	
 	var pageArray = [0, -100, -200, -300]
 	var pageTarget = parseInt($('.slider-content').css('left')) / $('.slider-content').width();
-	var pageResult = nearest(pageTarget * 400, pageArray)
-	var pageMargin = pageResult + '%'
-
+	var pageIndex = nearest(pageTarget * 400, pageArray)[1]
 	
-
-	$('.selector ul').animate({
-		marginLeft: navResult
-	}, time, ease)
-	$('.slider-nav ul').animate({
-		left: navMargin
-	}, time, ease)
-	$('.slider-content').animate({
-		left: pageMargin
-	}, time, ease)
-
+	slideAll(pageIndex)
 
 	return false;
 
@@ -97,18 +94,23 @@ function pageDragDuring() {
 	var selectMargin = (dragPercent * $('.slider-nav ul').width())
 	var navMargin = bodyW  + selectMargin
 
-	console.log(dragPercent)
-
 	$('.slider-nav ul').css('left', navMargin)
 	$('.selector ul').css('marginLeft', selectMargin-2);	
 
 }
 
 function nearest (num, arr) {
+	var i = 0
 	var res = arr.reduce(function (prev, curr) {
-    return (Math.abs(curr - num) < Math.abs(prev - num) ? curr : prev);
+		if (Math.abs(curr - num) < Math.abs(prev - num)) {
+			i ++;
+			return curr
+		} else {
+    		return prev;
+    	}
 	});
-	return res
+	console.log ([res, i])
+	return [res, i]
 }
 function slideAll (index) {
 	var r = index * -79

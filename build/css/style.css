@@ -100,6 +100,10 @@ body {
   font: 100 16px/20px "Gotham Rounded", sans-serif;
 }
 
+.centered {
+  text-align: center;
+}
+
 nav {
   width: 100%;
   height: 44px;
@@ -125,16 +129,6 @@ nav h1 {
   overflow: hidden;
   position: relative;
   z-index: 0;
-  border-bottom: 3px solid #00a869;
-}
-.slider-nav:after {
-  content: '';
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  border-width: 10px 9px 0 9px;
-  border-color: blue transparent transparent transparent;
-  top: 69px;
 }
 .slider-nav ul {
   width: 320px;
@@ -164,7 +158,7 @@ nav h1 {
   background-color: white;
   color: #ff4a98;
   margin: 0 auto;
-  margin-top: -72px;
+  margin-top: -69px;
   overflow: hidden;
   z-index: 4;
   pointer-events: none;
@@ -188,18 +182,23 @@ nav h1 {
 }
 
 .slider-content {
+  border-top: 3px solid #00a869;
   width: 400%;
 }
 .slider-content .slidee {
   display: inline-block;
   width: 24.75%;
   padding-top: 10px;
+  height: 40px;
 }
 .slider-content .slidee .module {
   border-radius: 10px;
   background-color: #51ca8c;
   margin: 10px;
   padding: 10px;
+}
+.slider-content .slidee .module.plain {
+  background-color: transparent;
 }
 
 footer {
