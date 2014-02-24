@@ -7,6 +7,22 @@
 	background-image: -ms-linear-gradient(-90deg, $from 0%, $to $dist);
 	background-image: linear-gradient(-180deg, $from 0%, $to $dist);
 }
+@mixin rotate($angle) {
+    -webkit-transform: rotate3d(0, 0, 1, $angle);
+       -moz-transform: rotate3d(0, 0, 1, $angle);
+        -ms-transform: rotate3d(0, 0, 1, $angle);
+         -o-transform: rotate3d(0, 0, 1, $angle);
+            transform: rotate3d(0, 0, 1, $angle);
+}
+
+@mixin line {
+  display: inline-block;
+  width: $button-size;
+  height: $button-size/6;
+  background: white;
+  border-radius: $button-size/1; 
+  transition: $transition;
+}
 
 $green: #00BD76;
 $pink: #FF4A98;
@@ -17,6 +33,10 @@ $shadow-width: 3;
 $slider-li-width: 75;
 $content-count: 4;
 $light-green: #51CA8C;
+
+$button-size : 1.7em; 
+$transition: all .3s ease-in-out;
+$delay: 120ms;
 
 .icon {
     font-family: 'icomoon';
@@ -50,13 +70,78 @@ nav {
 
     a#menu {
         display: inline-block;
+        padding: 0;
+        transition: $transition;
+        cursor: pointer;
+        user-select: none;
+        border-radius: $button-size/7;
+ 
+        &:hover {
+            opacity: 1;
+
+            // .lines {
+            //     &:before { top: $button-size/2.6; }
+            //     &:after { top: -$button-size/2.6; }
+            // }
+        }
+
+        .lines {
+   
+            //create middle line
+            @include line;
+            position: relative; 
+
+            /*create the upper and lower lines as pseudo-elements of the middle line*/
+            &:before, &:after {
+                @include line;
+                position: absolute;
+                left:0;
+                content: '';
+                // transform-origin: $button-size/14 center;
+            }
+            &:before { top: $button-size/3.2; }
+            &:after { top: -$button-size/3.2; }
+        }
+    }
+    a#menu.close .lines {
+    /*hide the middle line*/
+        background: transparent;
+     
+        /*overlay the lines by setting both their top values to 0*/
+        &:before, &:after{
+          transform-origin: 50% 50%;
+          top:0;
+          width: $button-size;
+        }
+     
+        // rotate the lines to form the x shape
+        &:before{
+          @include rotate(45deg); 
+        }
+        &:after{
+          @include rotate(-45deg); 
+        }
     }
     h1 {
+        width: 10em;
+        height: 1em;
+        overflow: hidden;
+        margin: 0 auto;
         text-align: center;
         margin-top: -1em;
         text-transform: uppercase;
         font-weight: 500;
         font-size: 1em;
+        line-height: 1em;
+    
+        span {
+            display: block;
+            transition: $transition;
+
+            &.new {
+                margin-top: -1em;
+            }
+        }
     }
 }
 
@@ -160,8 +245,12 @@ footer {
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     border-top: #{$shadow-width}px solid $dark-green;
+    transition: $transition;
+    transition-delay: 0ms;
 
     ul {
+        transition: $transition;
+        transition-delay: $delay;
         padding: 0 1.4em;
 
         li {
@@ -191,6 +280,16 @@ footer {
                 border-radius: 30px;
                 vertical-align: middle;
             }
+        }
+    }
+
+    &.action {
+        height: 80px;
+        transition-delay: $delay;
+
+        ul {
+            margin-top: 6em;
+            transition-delay: 0ms;
         }
     }
 }

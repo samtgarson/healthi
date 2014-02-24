@@ -113,13 +113,84 @@ nav {
 }
 nav a#menu {
   display: inline-block;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.24286em;
+}
+nav a#menu:hover {
+  opacity: 1;
+}
+nav a#menu .lines {
+  display: inline-block;
+  width: 1.7em;
+  height: 0.28333em;
+  background: white;
+  border-radius: 1.7em;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  /*create the upper and lower lines as pseudo-elements of the middle line*/
+}
+nav a#menu .lines:before, nav a#menu .lines:after {
+  display: inline-block;
+  width: 1.7em;
+  height: 0.28333em;
+  background: white;
+  border-radius: 1.7em;
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  left: 0;
+  content: '';
+}
+nav a#menu .lines:before {
+  top: 0.53125em;
+}
+nav a#menu .lines:after {
+  top: -0.53125em;
+}
+nav a#menu.close .lines {
+  /*hide the middle line*/
+  background: transparent;
+  /*overlay the lines by setting both their top values to 0*/
+}
+nav a#menu.close .lines:before, nav a#menu.close .lines:after {
+  transform-origin: 50% 50%;
+  top: 0;
+  width: 1.7em;
+}
+nav a#menu.close .lines:before {
+  -webkit-transform: rotate3d(0, 0, 1, 45deg);
+  -moz-transform: rotate3d(0, 0, 1, 45deg);
+  -ms-transform: rotate3d(0, 0, 1, 45deg);
+  -o-transform: rotate3d(0, 0, 1, 45deg);
+  transform: rotate3d(0, 0, 1, 45deg);
+}
+nav a#menu.close .lines:after {
+  -webkit-transform: rotate3d(0, 0, 1, -45deg);
+  -moz-transform: rotate3d(0, 0, 1, -45deg);
+  -ms-transform: rotate3d(0, 0, 1, -45deg);
+  -o-transform: rotate3d(0, 0, 1, -45deg);
+  transform: rotate3d(0, 0, 1, -45deg);
 }
 nav h1 {
+  width: 10em;
+  height: 1em;
+  overflow: hidden;
+  margin: 0 auto;
   text-align: center;
   margin-top: -1em;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 1em;
+  line-height: 1em;
+}
+nav h1 span {
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+nav h1 span.new {
+  margin-top: -1em;
 }
 
 .slider-nav {
@@ -212,8 +283,12 @@ footer {
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   border-top: 3px solid #00a869;
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0ms;
 }
 footer ul {
+  transition: all 0.3s ease-in-out;
+  transition-delay: 120ms;
   padding: 0 1.4em;
 }
 footer ul li {
@@ -239,4 +314,12 @@ footer ul li img {
   margin-right: 1em;
   border-radius: 30px;
   vertical-align: middle;
+}
+footer.action {
+  height: 80px;
+  transition-delay: 120ms;
+}
+footer.action ul {
+  margin-top: 6em;
+  transition-delay: 0ms;
 }

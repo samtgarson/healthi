@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    navLib()
+
     $('.slider-nav ul').pep({
         axis: 'x',
         velocityMultiplier: 0,
@@ -109,7 +111,6 @@ function nearest (num, arr) {
     		return prev;
     	}
 	});
-	console.log ([res, i])
 	return [res, i]
 }
 function slideAll (index) {
@@ -119,7 +120,6 @@ function slideAll (index) {
 	var time = 700
 
 	var pageMargin = index * 100
-	console.log()
 
 	$('.slider-content').animate({
 		left: '-' + pageMargin + '%'
@@ -131,4 +131,7 @@ function slideAll (index) {
 	$('.slider-nav ul').animate({
 		left: m
 	}, time, e)
+
+    var page = $('.slidee').eq(index).attr('class').split('slidee ')[1]
+    changePage(page);
 }
