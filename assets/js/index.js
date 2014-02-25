@@ -24,11 +24,14 @@ var app = new Vue({
     }
 })
 
-var VM = app.$.pageref
+var view = app.$.pageref
 
 function pageReady() {
-    this.$watch('name', loadContent)
-    // this.loadContent
+    this.$watch('name', function() {
+        this.loadContent
+        this.$parent.title = this.name
+    })
+    this.loadContent()
 }
 
 function loadContent() {
@@ -45,14 +48,13 @@ function appReady () {
 }
 
 function closeMenu (newPage) {
-    if(typeof(newPage)==='undefined') {newPage = VM.name};
+    if(typeof(newPage)==='undefined') {newPage = view.name};
 
     this.menuOpen = false
     this.title = newPage
 }
 
 function openMenu () {
-    console.log('opened')
     this.menuOpen = true
     this.title = 'menu'
 }

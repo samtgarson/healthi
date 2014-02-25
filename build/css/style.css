@@ -127,6 +127,9 @@ body.open nav a#menu .lines:after {
   -o-transform: rotate3d(0, 0, 1, -45deg);
   transform: rotate3d(0, 0, 1, -45deg);
 }
+body.open section.main {
+  top: 100%;
+}
 
 .centered {
   text-align: center;
@@ -209,6 +212,8 @@ section.main {
   height: 100%;
   padding-top: 44px;
   position: absolute;
+  top: 0;
+  transition: all 0.3s ease-in-out;
 }
 
 .slider-nav {

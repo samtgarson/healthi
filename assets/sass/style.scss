@@ -58,28 +58,33 @@ body {
     color: white;
     font: 100 16px/20px "Gotham Rounded", sans-serif;
 
-    &.open nav {
-        bottom: 0;
-        margin-bottom: 0;
+    &.open {
+        nav {
+            bottom: 0;
+            margin-bottom: 0;
 
-        a#menu .lines {
-        /*hide the middle line*/
-            background: transparent;
-         
-            /*overlay the lines by setting both their top values to 0*/
-            &:before, &:after{
-              transform-origin: 50% 50%;
-              top:0;
-              width: $button-size;
+            a#menu .lines {
+            /*hide the middle line*/
+                background: transparent;
+             
+                /*overlay the lines by setting both their top values to 0*/
+                &:before, &:after{
+                  transform-origin: 50% 50%;
+                  top:0;
+                  width: $button-size;
+                }
+             
+                // rotate the lines to form the x shape
+                &:before{
+                  @include rotate(45deg); 
+                }
+                &:after{
+                  @include rotate(-45deg); 
+                }
             }
-         
-            // rotate the lines to form the x shape
-            &:before{
-              @include rotate(45deg); 
-            }
-            &:after{
-              @include rotate(-45deg); 
-            }
+        }
+        section.main {
+            top: 100%;
         }
     }
 }
@@ -166,6 +171,8 @@ section.main {
     height: 100%;
     padding-top: 44px;
     position: absolute;
+    top: 0;
+    transition: $transition
 }
 
 .slider-nav {
