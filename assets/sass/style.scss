@@ -57,6 +57,31 @@ body {
     overflow: hidden;
     color: white;
     font: 100 16px/20px "Gotham Rounded", sans-serif;
+
+    &.open nav {
+        bottom: 0;
+        margin-bottom: 0;
+
+        a#menu .lines {
+        /*hide the middle line*/
+            background: transparent;
+         
+            /*overlay the lines by setting both their top values to 0*/
+            &:before, &:after{
+              transform-origin: 50% 50%;
+              top:0;
+              width: $button-size;
+            }
+         
+            // rotate the lines to form the x shape
+            &:before{
+              @include rotate(45deg); 
+            }
+            &:after{
+              @include rotate(-45deg); 
+            }
+        }
+    }
 }
 .centered {
     text-align: center;
@@ -66,7 +91,12 @@ nav {
     height: 44px;
     padding: 8px;
     box-sizing: border-box;
-    position: relative;
+    position: absolute;
+    transition: $transition;
+    bottom: 100%;
+    margin-bottom: -44px;
+    z-index: 4;
+
 
     a#menu {
         display: inline-block;
@@ -85,11 +115,16 @@ nav {
             // }
         }
 
+        &:active .lines {
+            background-color: $dark-green;
+        }
+
         .lines {
    
             //create middle line
             @include line;
             position: relative; 
+
 
             /*create the upper and lower lines as pseudo-elements of the middle line*/
             &:before, &:after {
@@ -101,25 +136,6 @@ nav {
             }
             &:before { top: $button-size/3.2; }
             &:after { top: -$button-size/3.2; }
-        }
-    }
-    a#menu.close .lines {
-    /*hide the middle line*/
-        background: transparent;
-     
-        /*overlay the lines by setting both their top values to 0*/
-        &:before, &:after{
-          transform-origin: 50% 50%;
-          top:0;
-          width: $button-size;
-        }
-     
-        // rotate the lines to form the x shape
-        &:before{
-          @include rotate(45deg); 
-        }
-        &:after{
-          @include rotate(-45deg); 
         }
     }
     h1 {
@@ -145,7 +161,12 @@ nav {
     }
 }
 
-
+section.main {
+    box-sizing: border-box;
+    height: 100%;
+    padding-top: 44px;
+    position: absolute;
+}
 
 .slider-nav {
     background-color: $dark-grey;
@@ -246,11 +267,11 @@ footer {
     -webkit-overflow-scrolling: touch;
     border-top: #{$shadow-width}px solid $dark-green;
     transition: $transition;
-    transition-delay: 0ms;
+    // transition-delay: 0ms;
 
     ul {
         transition: $transition;
-        transition-delay: $delay;
+        // transition-delay: $delay;
         padding: 0 1.4em;
 
         li {
@@ -285,11 +306,11 @@ footer {
 
     &.action {
         height: 80px;
-        transition-delay: $delay;
+        // transition-delay: $delay;
 
         ul {
             margin-top: 6em;
-            transition-delay: 0ms;
+            // transition-delay: 0ms;
         }
     }
 }

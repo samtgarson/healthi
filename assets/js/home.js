@@ -1,7 +1,4 @@
-$(document).ready(function() {
-
-    navLib()
-
+function home() {
     $('.slider-nav ul').pep({
         axis: 'x',
         velocityMultiplier: 0,
@@ -41,7 +38,7 @@ $(document).ready(function() {
 	    		slideAll($(this).index())
 	    	}
 	    })
-});
+}
 // function nearest(a, n) {
 // 	var curr = a[0]
 // 	for (i = 0; i < a.length; ++i) {

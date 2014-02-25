@@ -99,6 +99,34 @@ body {
   color: white;
   font: 100 16px/20px "Gotham Rounded", sans-serif;
 }
+body.open nav {
+  bottom: 0;
+  margin-bottom: 0;
+}
+body.open nav a#menu .lines {
+  /*hide the middle line*/
+  background: transparent;
+  /*overlay the lines by setting both their top values to 0*/
+}
+body.open nav a#menu .lines:before, body.open nav a#menu .lines:after {
+  transform-origin: 50% 50%;
+  top: 0;
+  width: 1.7em;
+}
+body.open nav a#menu .lines:before {
+  -webkit-transform: rotate3d(0, 0, 1, 45deg);
+  -moz-transform: rotate3d(0, 0, 1, 45deg);
+  -ms-transform: rotate3d(0, 0, 1, 45deg);
+  -o-transform: rotate3d(0, 0, 1, 45deg);
+  transform: rotate3d(0, 0, 1, 45deg);
+}
+body.open nav a#menu .lines:after {
+  -webkit-transform: rotate3d(0, 0, 1, -45deg);
+  -moz-transform: rotate3d(0, 0, 1, -45deg);
+  -ms-transform: rotate3d(0, 0, 1, -45deg);
+  -o-transform: rotate3d(0, 0, 1, -45deg);
+  transform: rotate3d(0, 0, 1, -45deg);
+}
 
 .centered {
   text-align: center;
@@ -109,7 +137,11 @@ nav {
   height: 44px;
   padding: 8px;
   box-sizing: border-box;
-  position: relative;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  bottom: 100%;
+  margin-bottom: -44px;
+  z-index: 4;
 }
 nav a#menu {
   display: inline-block;
@@ -121,6 +153,9 @@ nav a#menu {
 }
 nav a#menu:hover {
   opacity: 1;
+}
+nav a#menu:active .lines {
+  background-color: #00a869;
 }
 nav a#menu .lines {
   display: inline-block;
@@ -149,30 +184,6 @@ nav a#menu .lines:before {
 nav a#menu .lines:after {
   top: -0.53125em;
 }
-nav a#menu.close .lines {
-  /*hide the middle line*/
-  background: transparent;
-  /*overlay the lines by setting both their top values to 0*/
-}
-nav a#menu.close .lines:before, nav a#menu.close .lines:after {
-  transform-origin: 50% 50%;
-  top: 0;
-  width: 1.7em;
-}
-nav a#menu.close .lines:before {
-  -webkit-transform: rotate3d(0, 0, 1, 45deg);
-  -moz-transform: rotate3d(0, 0, 1, 45deg);
-  -ms-transform: rotate3d(0, 0, 1, 45deg);
-  -o-transform: rotate3d(0, 0, 1, 45deg);
-  transform: rotate3d(0, 0, 1, 45deg);
-}
-nav a#menu.close .lines:after {
-  -webkit-transform: rotate3d(0, 0, 1, -45deg);
-  -moz-transform: rotate3d(0, 0, 1, -45deg);
-  -ms-transform: rotate3d(0, 0, 1, -45deg);
-  -o-transform: rotate3d(0, 0, 1, -45deg);
-  transform: rotate3d(0, 0, 1, -45deg);
-}
 nav h1 {
   width: 10em;
   height: 1em;
@@ -191,6 +202,13 @@ nav h1 span {
 }
 nav h1 span.new {
   margin-top: -1em;
+}
+
+section.main {
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: 44px;
+  position: absolute;
 }
 
 .slider-nav {
@@ -284,11 +302,9 @@ footer {
   -webkit-overflow-scrolling: touch;
   border-top: 3px solid #00a869;
   transition: all 0.3s ease-in-out;
-  transition-delay: 0ms;
 }
 footer ul {
   transition: all 0.3s ease-in-out;
-  transition-delay: 120ms;
   padding: 0 1.4em;
 }
 footer ul li {
@@ -317,9 +333,7 @@ footer ul li img {
 }
 footer.action {
   height: 80px;
-  transition-delay: 120ms;
 }
 footer.action ul {
   margin-top: 6em;
-  transition-delay: 0ms;
 }

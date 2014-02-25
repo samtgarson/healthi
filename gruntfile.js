@@ -24,7 +24,8 @@ module.exports = function(grunt) {
       },
       build: {
         options: {
-          compress: true
+          compress: true,
+          beautify: true
         },
         files: {
           'build/js/script.min.js': ['assets/js/*.js']
