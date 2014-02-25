@@ -77,7 +77,28 @@ input, select {
   vertical-align: middle;
 }
 
-.icon, footer ul li:after {
+@font-face {
+  font-family: 'GothamRounded';
+  src: url("../fonts/gothamrnd-book.ttf") format("truetype"), url("../fonts/gothamrnd-book.svg#GothamRoundedBook") format("svg");
+  font-weight: '300';
+  font-style: 'normal';
+}
+
+@font-face {
+  font-family: 'GothamRounded';
+  src: url("../fonts/gothamrnd-light.ttf") format("truetype"), url("../fonts/gothamrnd-light.svg#GothamRoundedlight") format("svg");
+  font-weight: '100';
+  font-style: 'normal';
+}
+
+@font-face {
+  font-family: 'GothamRounded';
+  src: url("../fonts/gothamrnd-medium.ttf") format("truetype"), url("../fonts/gothamrnd-medium.svg#GothamRoundedmedium") format("svg");
+  font-weight: '500';
+  font-style: 'normal';
+}
+
+.icon, .home footer ul li:after, .goals footer ul li:after {
   font-family: 'icomoon';
   font-size: 2em;
   vertical-align: middle;
@@ -95,9 +116,12 @@ html {
 
 body {
   background-color: #00bd76;
-  overflow: hidden;
+  overflow-x: hidden;
   color: white;
-  font: 100 16px/20px "Gotham Rounded", sans-serif;
+  font: 300 16px/20px 'GothamRounded', sans-serif;
+  transform: translate(0, 20px);
+  width: 100%;
+  height: 100%;
 }
 body.open nav {
   bottom: 0;
@@ -130,6 +154,9 @@ body.open nav a#menu .lines:after {
 body.open section.main {
   top: 100%;
 }
+body.open section.menu {
+  top: 0;
+}
 
 .centered {
   text-align: center;
@@ -143,7 +170,7 @@ nav {
   position: absolute;
   transition: all 0.3s ease-in-out;
   bottom: 100%;
-  margin-bottom: -44px;
+  margin-bottom: -64px;
   z-index: 4;
 }
 nav a#menu {
@@ -156,9 +183,6 @@ nav a#menu {
 }
 nav a#menu:hover {
   opacity: 1;
-}
-nav a#menu:active .lines {
-  background-color: #00a869;
 }
 nav a#menu .lines {
   display: inline-block;
@@ -207,16 +231,49 @@ nav h1 span.new {
   margin-top: -1em;
 }
 
-section.main {
+section {
   box-sizing: border-box;
   height: 100%;
-  padding-top: 44px;
+  width: 100%;
+  padding-top: 64px;
   position: absolute;
   top: 0;
   transition: all 0.3s ease-in-out;
 }
 
-.slider-nav {
+section.menu {
+  padding-top: 20px;
+  padding-bottom: 44px;
+  top: -100%;
+}
+section.menu ul {
+  margin: 1em;
+}
+section.menu ul li {
+  background-color: #51ca8c;
+  border-radius: 4px;
+  padding: .7em;
+  padding-right: .4em;
+  text-transform: capitalize;
+  font-size: 1.1em;
+  margin-bottom: .7em;
+}
+section.menu ul li.current {
+  background-color: white;
+  color: #ff4a98;
+  font-weight: 500;
+}
+section.menu ul li.current .icon, section.menu .home footer ul li.current li:after, .home footer section.menu ul li.current li:after, section.menu .goals footer ul li.current li:after, .goals footer section.menu ul li.current li:after {
+  color: #dddddd;
+}
+section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer section.menu ul li li:after, section.menu .goals footer ul li li:after, .goals footer section.menu ul li li:after {
+  color: #00a869;
+  float: right;
+  text-transform: lowercase;
+  font-size: 1.5em;
+}
+
+.home .slider-nav, .goals .slider-nav {
   background-color: #2d2d2d;
   height: 69px;
   width: 100%;
@@ -224,7 +281,7 @@ section.main {
   position: relative;
   z-index: 0;
 }
-.slider-nav ul {
+.home .slider-nav ul, .goals .slider-nav ul {
   width: 320px;
   left: 50%;
   margin-left: -40px;
@@ -232,7 +289,7 @@ section.main {
   cursor: pointer;
   height: 69px;
 }
-.slider-nav ul li {
+.home .slider-nav ul li, .goals .slider-nav ul li {
   display: inline-block;
   width: 75px;
   padding-top: 24px;
@@ -241,12 +298,11 @@ section.main {
   border: 1px soild white;
   font-size: 1.8em;
 }
-.slider-nav ul li.icon, .slider-nav footer ul li:after, footer .slider-nav ul li:after {
+.home .slider-nav ul li.icon, .home .slider-nav footer ul li:after, .home footer .slider-nav ul li:after, .goals footer .home .slider-nav ul li:after, .goals .slider-nav ul li.icon, .home footer .goals .slider-nav ul li:after, .goals .slider-nav footer ul li:after, .goals footer .slider-nav ul li:after {
   font-size: 1.4em;
   padding-top: 24px;
 }
-
-.selector {
+.home .selector, .goals .selector {
   width: 75px;
   height: 69px;
   background-color: white;
@@ -258,10 +314,10 @@ section.main {
   pointer-events: none;
   position: relative;
 }
-.selector ul {
+.home .selector ul, .goals .selector ul {
   width: 450%;
 }
-.selector ul li {
+.home .selector ul li, .goals .selector ul li {
   display: inline-block;
   width: 75px;
   padding-top: 24px;
@@ -270,32 +326,30 @@ section.main {
   border: 1px soild white;
   font-size: 1.8em;
 }
-.selector ul li.icon, .selector footer ul li:after, footer .selector ul li:after {
+.home .selector ul li.icon, .home .selector footer ul li:after, .home footer .selector ul li:after, .goals footer .home .selector ul li:after, .goals .selector ul li.icon, .home footer .goals .selector ul li:after, .goals .selector footer ul li:after, .goals footer .selector ul li:after {
   font-size: 1.4em;
   padding-top: 24px;
 }
-
-.slider-content {
+.home .slider-content, .goals .slider-content {
   border-top: 3px solid #00a869;
   width: 400%;
 }
-.slider-content .slidee {
+.home .slider-content .slidee, .goals .slider-content .slidee {
   display: inline-block;
   width: 24.75%;
   padding-top: 10px;
   height: 40px;
 }
-.slider-content .slidee .module {
-  border-radius: 10px;
+.home .slider-content .slidee .module, .goals .slider-content .slidee .module {
+  border-radius: 4px;
   background-color: #51ca8c;
   margin: 10px;
   padding: 10px;
 }
-.slider-content .slidee .module.plain {
+.home .slider-content .slidee .module.plain, .goals .slider-content .slidee .module.plain {
   background-color: transparent;
 }
-
-footer {
+.home footer, .goals footer {
   background: white;
   color: #2d2d2d;
   bottom: 0;
@@ -307,38 +361,39 @@ footer {
   -webkit-overflow-scrolling: touch;
   border-top: 3px solid #00a869;
   transition: all 0.3s ease-in-out;
+  z-index: 2;
 }
-footer ul {
+.home footer ul, .goals footer ul {
   transition: all 0.3s ease-in-out;
   padding: 0 1.4em;
 }
-footer ul li {
+.home footer ul li, .goals footer ul li {
   height: 4em;
   line-height: 4em;
   vertical-align: middle;
   border-bottom: 1px solid #dddddd;
 }
-footer ul li:after {
+.home footer ul li:after, .goals footer ul li:after {
   content: 'r';
   color: #dddddd;
   position: absolute;
   right: .5em;
   font-size: 2.4em;
 }
-footer ul li span {
+.home footer ul li span, .goals footer ul li span {
   color: #ff4a98;
   font-weight: 500;
 }
-footer ul li img {
+.home footer ul li img, .goals footer ul li img {
   height: 2.4em;
   width: 2.4em;
   margin-right: 1em;
   border-radius: 30px;
   vertical-align: middle;
 }
-footer.action {
+.home footer.action, .goals footer.action {
   height: 80px;
 }
-footer.action ul {
+.home footer.action ul, .goals footer.action ul {
   margin-top: 6em;
 }

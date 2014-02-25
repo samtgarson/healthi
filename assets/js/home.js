@@ -1,4 +1,4 @@
-function home() {
+function homeFunc() {
     $('.slider-nav ul').pep({
         axis: 'x',
         velocityMultiplier: 0,
@@ -129,6 +129,11 @@ function slideAll (index) {
 		left: m
 	}, time, e)
 
-    var page = $('.slidee').eq(index).attr('class').split('slidee ')[1]
-    changePage(page);
+    var newTitle = $('.slidee').eq(index).attr('class').split('slidee ')[1]
+    if (newTitle != view.title) {
+        console.log(newTitle)
+        view.title = newTitle
+        $('footer').toggleClass('action')
+    }
+
 }

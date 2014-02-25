@@ -1,0 +1,36 @@
+section.menu {
+    padding-top: 20px;
+    padding-bottom: 44px;
+    top: -100%;
+    
+    ul {
+        margin: 1em;
+
+        li {
+            background-color: $light-green;
+            border-radius: $module-radius;
+            padding: .7em;
+            padding-right: .4em;
+            text-transform: capitalize;
+            font-size: 1.1em;
+            margin-bottom: .7em;
+
+            &.current {
+                background-color: white;
+                color: $pink;
+                font-weight: 500;
+
+                .icon {
+                    color: $light-grey
+                }
+            }
+
+            .icon {
+                color: $dark-green;
+                float: right;
+                text-transform: lowercase;
+                font-size: 1.5em;
+            }
+        }
+    }
+}

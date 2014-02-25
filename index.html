@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Sam Garson">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     
     <link rel="stylesheet" href="build/css/style.css" />
@@ -23,14 +24,25 @@
 </head>
 
 <body v-class="open: menuOpen">
+    <div id="statusbar"> </div>
+
+    <style type="text/css"> #statusbar{ background: #00BD76; width:100%; position: fixed; top:0; opacity: 0.95; z-index: 1030;} .navbar {margin-top: 15pt;}</style>
+
     <nav>
         <a class="lines-button" id="menu" type="button" v-on="click: toggleMenu">
             <span class="lines"></span>
         </a>
-        <h1 id="title"><span class="old" >Title</span></h1>
+        <h1 id="title"><span class="old" >Home</span></h1>
     </nav>
-    <section class="main" v-component="Page" v-ref="pageref">
-
+    <section class="main" v-class="name" v-component="Page" v-ref="pageref">
+    </section>
+    <section class="menu">
+        <ul id="pages">
+            <li v-attr="id: $value" v-repeat="views" v-on="click: changePage(this)" >
+                {{$value}}
+                <span class="icon">d</span>
+            </li>
+        </ul>
     </section>
     <script src="build/js/jquery.js"></script>
     <script src="build/js/vue.min.js"></script>

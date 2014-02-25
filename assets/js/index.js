@@ -2,7 +2,9 @@ Vue.component('Page', {
     template: 'hello',
     ready: pageReady,
     data: {
-        name: 'home'
+        name: 'home',
+        title: 'home',
+        viewData: {}
     },
     methods: {
         loadContent: loadContent,
@@ -13,60 +15,73 @@ var app = new Vue({
     el: 'body',
     ready: appReady,
     data: {
-        title: 'home',
         menuOpen: false,
+        views: ['home', 'settings']
     },
     methods: {
         toggleMenu: function() {!this.menuOpen ? this.openMenu() : this.closeMenu()},
         closeMenu: closeMenu,
         changeTitle: changeTitle,
         openMenu: openMenu,
+        changePage: changePage,
     }
 })
 
 var view = app.$.pageref
+// app.openMenu()
 
 function pageReady() {
-    this.$watch('name', function() {
-        this.loadContent
-        this.$parent.title = this.name
-    })
+    this.$watch('name', function(newValue) {this.title = newValue; console.log('changingTitle')})
+    this.$watch('title', this.$parent.changeTitle)
     this.loadContent()
 }
 
+function changePage(item) {
+    var newPage = item.$value
+    if (!$('#' + newPage).hasClass('current')){
+        $('section.main').empty()
+        view.viewData = {}
+    
+        view.name = newPage
+        
+        this.closeMenu()
+        view.loadContent()
+    } else {
+        this.closeMenu()
+    }
+}
 function loadContent() {
     var file = 'build/templates/' + this.name + '.html'
     $.get(file, function(html) {
         $('section.main').html(html)
-    })
-
-    eval(this.name + '()')
+    }).done(function(){
+        setTimeout(function() {eval(view.name + 'Func()')}, 400)
+    })    
 }
 
 function appReady () {
-    this.$watch('title', this.changeTitle)
 }
 
-function closeMenu (newPage) {
-    if(typeof(newPage)==='undefined') {newPage = view.name};
-
+function closeMenu () {
+    view.title = view.name
     this.menuOpen = false
-    this.title = newPage
 }
 
 function openMenu () {
     this.menuOpen = true
-    this.title = 'menu'
+    $('.current').removeClass('current')
+
+    $('#' + view.name).addClass('current')
+    view.title = 'menu'
 }
 
-function changeTitle (page) {
-    var n = "<span class='new'>" + page + "</span>"
-    $('#title').prepend(n)
+function changeTitle (newTitle) {
+    $('h1#title span').addClass('old')
+    $('h1#title').prepend("<span>" + newTitle + "</span>")
     setTimeout(function() {
         $('.new').css('margin-top', 0)
+        setTimeout (function(){
+            $('.old').remove()
+        }, 400)
     }, 100)
-    setTimeout(function(){
-        $('.old').remove()
-        $('.new').removeClass('new').addClass('old')
-    }, 500)
 }
