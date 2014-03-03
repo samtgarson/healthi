@@ -41,6 +41,14 @@
             transform: rotate3d(0, 0, 1, $angle);
 }
 
+@mixin transDelay($n, $d) {
+    @for $i from 1 through $n {
+        &:nth-child(#{$i}) {
+            transition-delay: $delay * $d * $i
+        }
+    }
+}
+
 @mixin line {
   display: inline-block;
   width: $menu-button-size;
@@ -135,6 +143,9 @@ body {
 }
 .centered {
     text-align: center;
+}
+.closed {
+    transition: none !important;
 }
 nav {
     width: 100%;

@@ -23,7 +23,7 @@
             border: 1px soild white;
             font-size: 1.8em;
             transition: padding $transition;
-            transition-delay: $delay*6;
+            // @include transDelay(4, 2);
 
             &.closed {
                 padding-top: 120px;
@@ -60,7 +60,7 @@
             border: 1px soild white;
             font-size: 1.8em;
             transition: padding $transition;
-            transition-delay: $delay*3;
+            // transition-delay: $delay*4;
 
             &.closed {
                 padding-top: 120px;
@@ -81,10 +81,10 @@
     padding-bottom: 133px;
     box-sizing: border-box;
     transition: padding $transition;
-    transition-delay: $delay*2;
+    transition-delay: $delay*6;
 
     &.closed {
-        padding-top: 500px;
+        padding-left: 400px;
     }
 
     .slidee {
@@ -147,6 +147,14 @@ footer {
             line-height: 4em;
             vertical-align: middle;
             border-bottom: 1px solid $light-grey;
+            transition: margin-left $transition;
+
+            @include transDelay(3, 4);
+
+            &.closed {
+                margin-left: -100%;
+    
+            }
 
             &:after {
                 @extend .icon;
@@ -172,7 +180,7 @@ footer {
         }
     }        
 }
-section.home[title="goals"] {
+.home[title="goals"] {
     .slidee {
         padding-bottom: 6em;
     }
