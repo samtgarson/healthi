@@ -56,7 +56,7 @@ function loadContent() {
     $.get(file, function(html) {
         $('section.main').html(html)
     }).done(function(){
-        setTimeout(function() {eval(view.name + 'Func()')}, 500)
+        setTimeout(function() {eval(view.name + 'Func()')}, 350)
     })    
 }
 
@@ -71,7 +71,7 @@ function openMenu () {
     this.menuOpen = true
     $('.current').removeClass('current')
 
-    $('#' + view.name).addClass('current')
+    $('#pages #' + view.name).addClass('current')
     view.title = 'menu'
 }
 

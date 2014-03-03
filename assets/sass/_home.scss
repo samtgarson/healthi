@@ -47,6 +47,7 @@
     z-index: 4;
     pointer-events:none;
     position: relative;
+    font-family: GMed;
 
     ul {
         width: 450%;
@@ -84,7 +85,7 @@
     transition-delay: $delay*6;
 
     &.closed {
-        padding-left: 400px;
+        padding-left: 100%;
     }
 
     .slidee {
@@ -95,6 +96,7 @@
         height: 100%;
         box-sizing: border-box;
         vertical-align: top;
+        transition: padding $transition;
 
         .module {
             border-radius: $module-radius;
@@ -139,7 +141,48 @@ footer {
 
     ul {
         transition: $transition;
-        // transition-delay: $delay;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    ul#tab {
+        width: 92%;
+        margin-left: 4%;
+
+        li {
+            display: inline-block;
+            width: 24%;
+            text-align: center;
+            margin-top: 12em;
+            transition: margin-top $transition;
+            @include transDelay(4, -1);
+
+            vertical-align: top;
+
+            label {
+                font-size: .9em;
+                font-family: GBook;
+            }
+
+            div {
+                width: 40px;
+                height: 40px;
+                border: 1px solid $green;
+                border-radius: 50px;
+                margin: .5em auto .1em auto;
+            }
+
+            &:first-child div {
+                background-color: $pink;
+                border-color: $pink;
+            }
+        }
+    }
+
+    ul#news {
+        transition-delay: $delay * 8;
         padding: 0 1.4em;
 
         li {
@@ -180,17 +223,23 @@ footer {
         }
     }        
 }
-.home[title="goals"] {
+&[title=goals] {
     .slidee {
-        padding-bottom: 6em;
+        padding-bottom: 7em;
     }
     footer {
         height: 80px;
         // transition-delay: $delay;
 
-        ul {
-            margin-top: 6em;
-            // transition-delay: 0ms;
+        ul#news {
+            top: 12em;
+            transition-delay: 0ms;
+        }
+        ul#tab {
+            li {
+                margin-top: 0;
+                @include transDelay(4, 2.5);
+            }
         }
     }
 }
