@@ -150,6 +150,8 @@ footer {
     ul#tab {
         width: 92%;
         margin-left: 4%;
+        z-index: 1;
+        background-color: white;
 
         li {
             display: inline-block;
@@ -184,6 +186,8 @@ footer {
     ul#news {
         transition-delay: $delay * 8;
         padding: 0 1.4em;
+        z-index: 2;
+        background-color: white;
 
         li {
             height: 4em;
@@ -229,13 +233,16 @@ footer {
     }
     footer {
         height: 80px;
+        overflow: hidden;
         // transition-delay: $delay;
 
         ul#news {
             top: 12em;
             transition-delay: 0ms;
+            z-index: 1;
         }
         ul#tab {
+            z-index: 2;
             li {
                 margin-top: 0;
                 @include transDelay(4, 2.5);

@@ -133,7 +133,7 @@ function slideAll (index) {
     var newTitle = $('.slidee').eq(index).attr('class').split('slidee ')[1]
     if (newTitle != view.title) {
         view.title = newTitle
-        // $('footer').toggleClass('action')
+        if ($('footer').scrollTop()) {$('footer').scrollTop(0)}
     }
 
 }

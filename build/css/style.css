@@ -418,6 +418,8 @@ section.menu ul li .icon, section.menu .home footer ul#news li li:after, .home f
 .home footer ul#tab {
   width: 92%;
   margin-left: 4%;
+  z-index: 1;
+  background-color: white;
 }
 .home footer ul#tab li {
   display: inline-block;
@@ -457,6 +459,8 @@ section.menu ul li .icon, section.menu .home footer ul#news li li:after, .home f
 .home footer ul#news {
   transition-delay: 240ms;
   padding: 0 1.4em;
+  z-index: 2;
+  background-color: white;
 }
 .home footer ul#news li {
   height: 4em;
@@ -500,10 +504,15 @@ section.menu ul li .icon, section.menu .home footer ul#news li li:after, .home f
 }
 .home[title=goals] footer {
   height: 80px;
+  overflow: hidden;
 }
 .home[title=goals] footer ul#news {
   top: 12em;
   transition-delay: 0ms;
+  z-index: 1;
+}
+.home[title=goals] footer ul#tab {
+  z-index: 2;
 }
 .home[title=goals] footer ul#tab li {
   margin-top: 0;
