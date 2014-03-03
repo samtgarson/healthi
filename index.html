@@ -13,7 +13,7 @@
     
     <link rel="stylesheet" href="build/css/style.css" />
     <link rel="shortcut icon" type="image/x-icon" href="build/img/favicon.ico">
-    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/b2d9810d62/UntitledProject1/style.css">
+    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/f22d575366/UntitledProject1/style.css">
     <link href="/build/img/icon-120.png" sizes="120x120" rel="apple-touch-icon">
 
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
@@ -24,26 +24,24 @@
 </head>
 
 <body v-class="open: menuOpen">
-    <div id="statusbar"> </div>
-
-    <style type="text/css"> #statusbar{ background: #00BD76; width:100%; position: fixed; top:0; opacity: 0.95; z-index: 1030;} .navbar {margin-top: 15pt;}</style>
-
-    <nav>
-        <a class="lines-button" id="menu" type="button" v-on="click: toggleMenu">
-            <span class="lines"></span>
-        </a>
-        <h1 id="title"><span class="old" >Home</span></h1>
-    </nav>
-    <section class="main" v-class="name" v-component="Page" v-ref="pageref">
-    </section>
-    <section class="menu">
-        <ul id="pages">
-            <li v-attr="id: $value" v-repeat="views" v-on="click: changePage(this)" >
-                {{$value}}
-                <span class="icon">d</span>
-            </li>
-        </ul>
-    </section>
+    <div id="wrapper">
+        <nav>
+            <a class="lines-button" id="menu" type="button" v-on="click: toggleMenu">
+                <span class="lines"></span>
+            </a>
+            <h1 id="title"><span class="old" >Home</span></h1>
+        </nav>
+        <section class="main" v-attr="title: title" v-class="name" v-component="Page" v-ref="pageref">
+        </section>
+        <section class="menu">
+            <ul id="pages">
+                <li v-attr="id: $value" v-repeat="views" v-on="click: changePage(this)" >
+                    {{$value}}
+                    <span class="icon">d</span>
+                </li>
+            </ul>
+        </section>
+    </div>
     <script src="build/js/jquery.js"></script>
     <script src="build/js/vue.min.js"></script>
     <script src="build/js/pep.js"></script>

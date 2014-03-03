@@ -78,27 +78,31 @@ input, select {
 }
 
 @font-face {
-  font-family: 'GothamRounded';
+  font-family: 'GBook';
+  src: url("../fonts/gothamrnd-book.eot");
   src: url("../fonts/gothamrnd-book.ttf") format("truetype"), url("../fonts/gothamrnd-book.svg#GothamRoundedBook") format("svg");
   font-weight: '300';
   font-style: 'normal';
 }
 
 @font-face {
-  font-family: 'GothamRounded';
-  src: url("../fonts/gothamrnd-light.ttf") format("truetype"), url("../fonts/gothamrnd-light.svg#GothamRoundedlight") format("svg");
-  font-weight: '100';
-  font-style: 'normal';
-}
-
-@font-face {
-  font-family: 'GothamRounded';
+  font-family: 'GMed';
+  src: url("../fonts/gothamrnd-medium.eot");
   src: url("../fonts/gothamrnd-medium.ttf") format("truetype"), url("../fonts/gothamrnd-medium.svg#GothamRoundedmedium") format("svg");
   font-weight: '500';
   font-style: 'normal';
 }
 
-.icon, .home footer ul li:after, .goals footer ul li:after {
+@font-face {
+  font-family: 'GLight';
+  src: url("../fonts/gothamrnd-light.eot");
+  src: url("../fonts/gothamrnd-light.ttf") format("truetype"), url("../fonts/gothamrnd-light.svg#GothamRoundedlight") format("svg");
+  font-weight: '100';
+  font-style: 'normal';
+}
+
+/* easeInOutQuart */
+.icon, .home footer ul li:after {
   font-family: 'icomoon';
   font-size: 2em;
   vertical-align: middle;
@@ -118,10 +122,16 @@ body {
   background-color: #00bd76;
   overflow-x: hidden;
   color: white;
-  font: 300 16px/20px 'GothamRounded', sans-serif;
+  font: 16px/20px 'GBook', sans-serif;
   transform: translate(0, 20px);
   width: 100%;
   height: 100%;
+}
+body div#wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 body.open nav {
   bottom: 0;
@@ -168,7 +178,7 @@ nav {
   padding: 8px;
   box-sizing: border-box;
   position: absolute;
-  transition: all 0.3s ease-in-out;
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
   bottom: 100%;
   margin-bottom: -64px;
   z-index: 4;
@@ -176,7 +186,7 @@ nav {
 nav a#menu {
   display: inline-block;
   padding: 0;
-  transition: all 0.3s ease-in-out;
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
   cursor: pointer;
   user-select: none;
   border-radius: 0.24286em;
@@ -190,7 +200,7 @@ nav a#menu .lines {
   height: 0.28333em;
   background: white;
   border-radius: 1.7em;
-  transition: all 0.3s ease-in-out;
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
   position: relative;
   /*create the upper and lower lines as pseudo-elements of the middle line*/
 }
@@ -200,7 +210,7 @@ nav a#menu .lines:before, nav a#menu .lines:after {
   height: 0.28333em;
   background: white;
   border-radius: 1.7em;
-  transition: all 0.3s ease-in-out;
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
   position: absolute;
   left: 0;
   content: '';
@@ -219,13 +229,13 @@ nav h1 {
   text-align: center;
   margin-top: -1em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-family: GMed;
   font-size: 1em;
   line-height: 1em;
 }
 nav h1 span {
   display: block;
-  transition: all 0.3s ease-in-out;
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 nav h1 span.new {
   margin-top: -1em;
@@ -236,15 +246,16 @@ section {
   height: 100%;
   width: 100%;
   padding-top: 64px;
-  position: absolute;
+  position: relative;
   top: 0;
-  transition: all 0.3s ease-in-out;
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 section.menu {
   padding-top: 20px;
   padding-bottom: 44px;
   top: -100%;
+  position: absolute;
 }
 section.menu ul {
   margin: 1em;
@@ -263,17 +274,17 @@ section.menu ul li.current {
   color: #ff4a98;
   font-weight: 500;
 }
-section.menu ul li.current .icon, section.menu .home footer ul li.current li:after, .home footer section.menu ul li.current li:after, section.menu .goals footer ul li.current li:after, .goals footer section.menu ul li.current li:after {
+section.menu ul li.current .icon, section.menu .home footer ul li.current li:after, .home footer section.menu ul li.current li:after {
   color: #dddddd;
 }
-section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer section.menu ul li li:after, section.menu .goals footer ul li li:after, .goals footer section.menu ul li li:after {
+section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer section.menu ul li li:after {
   color: #00a869;
   float: right;
   text-transform: lowercase;
   font-size: 1.5em;
 }
 
-.home .slider-nav, .goals .slider-nav {
+.home .slider-nav {
   background-color: #2d2d2d;
   height: 69px;
   width: 100%;
@@ -281,7 +292,7 @@ section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer
   position: relative;
   z-index: 0;
 }
-.home .slider-nav ul, .goals .slider-nav ul {
+.home .slider-nav ul {
   width: 320px;
   left: 50%;
   margin-left: -40px;
@@ -289,7 +300,7 @@ section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer
   cursor: pointer;
   height: 69px;
 }
-.home .slider-nav ul li, .goals .slider-nav ul li {
+.home .slider-nav ul li {
   display: inline-block;
   width: 75px;
   padding-top: 24px;
@@ -297,12 +308,17 @@ section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer
   vertical-align: middle;
   border: 1px soild white;
   font-size: 1.8em;
+  transition: padding 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition-delay: 180ms;
 }
-.home .slider-nav ul li.icon, .home .slider-nav footer ul li:after, .home footer .slider-nav ul li:after, .goals footer .home .slider-nav ul li:after, .goals .slider-nav ul li.icon, .home footer .goals .slider-nav ul li:after, .goals .slider-nav footer ul li:after, .goals footer .slider-nav ul li:after {
+.home .slider-nav ul li.closed {
+  padding-top: 120px;
+}
+.home .slider-nav ul li.icon, .home .slider-nav footer ul li:after, .home footer .slider-nav ul li:after {
   font-size: 1.4em;
   padding-top: 24px;
 }
-.home .selector, .goals .selector {
+.home .selector {
   width: 75px;
   height: 69px;
   background-color: white;
@@ -314,10 +330,10 @@ section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer
   pointer-events: none;
   position: relative;
 }
-.home .selector ul, .goals .selector ul {
+.home .selector ul {
   width: 450%;
 }
-.home .selector ul li, .goals .selector ul li {
+.home .selector ul li {
   display: inline-block;
   width: 75px;
   padding-top: 24px;
@@ -325,31 +341,50 @@ section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer
   vertical-align: middle;
   border: 1px soild white;
   font-size: 1.8em;
+  transition: padding 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition-delay: 90ms;
 }
-.home .selector ul li.icon, .home .selector footer ul li:after, .home footer .selector ul li:after, .goals footer .home .selector ul li:after, .goals .selector ul li.icon, .home footer .goals .selector ul li:after, .goals .selector footer ul li:after, .goals footer .selector ul li:after {
+.home .selector ul li.closed {
+  padding-top: 120px;
+}
+.home .selector ul li.icon, .home .selector footer ul li:after, .home footer .selector ul li:after {
   font-size: 1.4em;
   padding-top: 24px;
 }
-.home .slider-content, .goals .slider-content {
+.home .slider-content {
   border-top: 3px solid #00a869;
   width: 400%;
+  height: 100%;
+  padding-bottom: 133px;
+  box-sizing: border-box;
+  transition: padding 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition-delay: 60ms;
 }
-.home .slider-content .slidee, .goals .slider-content .slidee {
+.home .slider-content.closed {
+  padding-top: 500px;
+}
+.home .slider-content .slidee {
   display: inline-block;
   width: 24.75%;
-  padding-top: 10px;
-  height: 40px;
+  padding-bottom: 12em;
+  height: 100%;
+  box-sizing: border-box;
+  vertical-align: top;
 }
-.home .slider-content .slidee .module, .goals .slider-content .slidee .module {
+.home .slider-content .slidee .module {
   border-radius: 4px;
   background-color: #51ca8c;
-  margin: 10px;
-  padding: 10px;
+  margin: 1em;
+  padding: 1em;
+  box-sizing: border-box;
 }
-.home .slider-content .slidee .module.plain, .goals .slider-content .slidee .module.plain {
+.home .slider-content .slidee .module.plain {
   background-color: transparent;
 }
-.home footer, .goals footer {
+.home .slider-content .slidee.goals .module {
+  height: 100%;
+}
+.home footer {
   background: white;
   color: #2d2d2d;
   bottom: 0;
@@ -360,40 +395,49 @@ section.menu ul li .icon, section.menu .home footer ul li li:after, .home footer
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   border-top: 3px solid #00a869;
-  transition: all 0.3s ease-in-out;
+  transition: height 500ms cubic-bezier(0.77, 0, 0.175, 1);
   z-index: 2;
 }
-.home footer ul, .goals footer ul {
-  transition: all 0.3s ease-in-out;
+.home footer.closed {
+  height: 0;
+}
+.home footer span {
+  font-family: GMed;
+}
+.home footer ul {
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
   padding: 0 1.4em;
 }
-.home footer ul li, .goals footer ul li {
+.home footer ul li {
   height: 4em;
   line-height: 4em;
   vertical-align: middle;
   border-bottom: 1px solid #dddddd;
 }
-.home footer ul li:after, .goals footer ul li:after {
+.home footer ul li:after {
   content: 'r';
   color: #dddddd;
   position: absolute;
   right: .5em;
   font-size: 2.4em;
 }
-.home footer ul li span, .goals footer ul li span {
+.home footer ul li span {
   color: #ff4a98;
   font-weight: 500;
 }
-.home footer ul li img, .goals footer ul li img {
+.home footer ul li img {
   height: 2.4em;
   width: 2.4em;
   margin-right: 1em;
   border-radius: 30px;
   vertical-align: middle;
 }
-.home footer.action, .goals footer.action {
+.home section.home[title="goals"] .slidee {
+  padding-bottom: 6em;
+}
+.home section.home[title="goals"] footer {
   height: 80px;
 }
-.home footer.action ul, .goals footer.action ul {
+.home section.home[title="goals"] footer ul {
   margin-top: 6em;
 }

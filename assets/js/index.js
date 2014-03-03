@@ -26,12 +26,13 @@ var app = new Vue({
         changePage: changePage,
     }
 })
-
 var view = app.$.pageref
 // app.openMenu()
-
+function appReady () {
+    
+}
 function pageReady() {
-    this.$watch('name', function(newValue) {this.title = newValue; console.log('changingTitle')})
+    this.$watch('name', function(newValue) {this.title = newValue})
     this.$watch('title', this.$parent.changeTitle)
     this.loadContent()
 }
@@ -55,12 +56,11 @@ function loadContent() {
     $.get(file, function(html) {
         $('section.main').html(html)
     }).done(function(){
-        setTimeout(function() {eval(view.name + 'Func()')}, 400)
+        setTimeout(function() {eval(view.name + 'Func()')}, 500)
     })    
 }
 
-function appReady () {
-}
+
 
 function closeMenu () {
     view.title = view.name
