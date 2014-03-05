@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Home</title>
+    <title>Healthi: Home</title>
     <meta name="description" content="">
     <meta name="author" content="Sam Garson">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -13,7 +13,7 @@
     
     <link rel="stylesheet" href="build/css/style.css" />
     <link rel="shortcut icon" type="image/x-icon" href="build/img/favicon.ico">
-    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/f22d575366/UntitledProject1/style.css">
+    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/9dc723f0be/UntitledProject1/style.css">
     <link href="/build/img/icon-120.png" sizes="120x120" rel="apple-touch-icon">
 
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
@@ -35,9 +35,10 @@
         </section>
         <section class="menu">
             <ul id="pages">
-                <li v-attr="id: $value" v-repeat="views" v-on="click: changePage(this)" >
-                    {{$value}}
-                    <span class="icon">d</span>
+                <li v-repeat="views" v-attr="id: name" v-on="click: changePage(this)" >
+                    <span class="icon">{{icon}}</span>
+                    {{name}}
+                    <span class="icon arrow">d</span>
                 </li>
             </ul>
         </section>

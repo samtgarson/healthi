@@ -130,10 +130,16 @@ function slideAll (index) {
 		left: m
 	}, time, e)
 
+	setTimeout(goalFunc(index))
+
     var newTitle = $('.slidee').eq(index).attr('class').split('slidee ')[1]
     if (newTitle != view.title) {
         view.title = newTitle
         if ($('footer').scrollTop()) {$('footer').scrollTop(0)}
     }
-
+}
+function goalFunc(index) {
+	$('.slidee.goals .module').eq(index-1).removeClass('goalClosed');
+	$('.slidee.goals .module').not(':eq(' + (index-1) + ')').addClass('goalClosed');
+	console.log(index)
 }

@@ -16,7 +16,10 @@ var app = new Vue({
     ready: appReady,
     data: {
         menuOpen: false,
-        views: ['home', 'settings']
+        views: [
+            {name: 'home', icon: 'h'},
+            {name: 'settings', icon: 'C'}
+        ]
     },
     methods: {
         toggleMenu: function() {!this.menuOpen ? this.openMenu() : this.closeMenu()},
@@ -38,7 +41,8 @@ function pageReady() {
 }
 
 function changePage(item) {
-    var newPage = item.$value
+
+    var newPage = item.name
     if (!$('#' + newPage).hasClass('current')){
         $('section.main').empty()
         view.viewData = {}
@@ -63,7 +67,7 @@ function loadContent() {
 
 
 function closeMenu () {
-    view.title = view.name
+    this.changeTitle(view.title)
     this.menuOpen = false
 }
 
@@ -72,10 +76,12 @@ function openMenu () {
     $('.current').removeClass('current')
 
     $('#pages #' + view.name).addClass('current')
-    view.title = 'menu'
+    this.changeTitle('menu')
 }
 
 function changeTitle (newTitle) {
+    document.title = 'Healthi: ' + newTitle.substr(0, 1).toUpperCase() + newTitle.substr(1, newTitle.length)
+;
     $('h1#title span').addClass('old')
     $('h1#title').prepend("<span class='new'>" + newTitle + "</span>")
     setTimeout(function() {

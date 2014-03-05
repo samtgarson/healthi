@@ -7,6 +7,11 @@ section.menu {
     ul {
         margin: 1em;
 
+        .icon {
+            font-size: 1em;
+            margin-right: 1em;
+        }
+
         li {
             background-color: $light-green;
             border-radius: $module-radius;
@@ -21,12 +26,13 @@ section.menu {
                 color: $pink;
                 font-family: GMed;
 
-                .icon {
+                .arrow {
                     color: $light-grey
                 }
             }
 
-            .icon {
+            .arrow {
+                margin-right: 0;
                 color: $dark-green;
                 float: right;
                 text-transform: lowercase;

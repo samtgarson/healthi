@@ -41,11 +41,25 @@
             transform: rotate3d(0, 0, 1, $angle);
 }
 
-@mixin transDelay($n, $d) {
+@mixin transDelay($n, $d, $p:0) {
     @for $i from 1 through $n {
         &:nth-child(#{$i}) {
-            transition-delay: $delay * $d * $i
+            transition-delay: $p + ($delay * $d * $i)
         }
+    }
+}
+
+@mixin verticalAlign(){
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.25em; /* Adjusts for spacing */
+    }
+    div.vcentered {
+        vertical-align: middle;
+        display: inline-block;
     }
 }
 
@@ -70,7 +84,7 @@ $light-green: #51CA8C;
 $shadow-width: 3;
 $slider-li-width: 75;
 $content-count: 4;
-$module-radius: 4px;
+$module-radius: 2px;
 $menu-button-size : 1.6em; 
 
 // Timing
@@ -80,7 +94,8 @@ $delay: 30ms;
 .icon {
     font-family: 'icomoon';
     font-size: 2em;
-    vertical-align: middle;
+    vertical-align: text-bottom;
+    text-transform: none !important;
 }
 h1, h2, h3, h4, h5, h6 {
     padding: 0;
