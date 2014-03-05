@@ -1,5 +1,15 @@
 function homeFunc() {
-	$('.closed').removeClass('closed')
+	$('.closed').removeClass('closed');
+	var dealer = new Dragdealer('dragwrapper', {
+		x: 1,
+		steps: 4,
+		loose: true,
+		animationCallback: function(x, y) {
+			$('.selector ul').css('margin-left', (x*240)-240 + 'px')
+			console.log(x)
+		}
+	});
+	console.log(dealer)
     // $('.slider-nav ul').pep({
     //     axis: 'x',
     //     velocityMultiplier: 0,

@@ -5,11 +5,22 @@
     overflow: hidden;
     position: relative;
     z-index: 0;
+    text-align: center;
 
-    ul {
-        width: ($slider-li-width * 4) + 20px;
+    div.dragdealer {
+        $w : 80 * 7px;
+        width: $w;
+        height: 100%;
         left: 50%;
-        margin-left: -40px;
+        margin-left: - $w/2;
+        position: absolute;
+
+    }
+
+    div.handle {
+        width: ($slider-li-width * 4) + 20px;
+        // left: 50%;
+        // margin-left: -40px;
         position: absolute;
         cursor: pointer;
         height: 69px;
