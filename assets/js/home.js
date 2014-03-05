@@ -1,30 +1,30 @@
 function homeFunc() {
 	$('.closed').removeClass('closed')
-    $('.slider-nav ul').pep({
-        axis: 'x',
-        velocityMultiplier: 0,
-        removeMargins: false,
-        stop: dragStop,
-        drag: dragDuring,
-        cssEaseDuration: 300,
-        cssEaseString: 'easeOutExpo',
-        useCSSTranslation: false,
-        shouldEase: false,
-        callIfNotStarted: []
-    });
+    // $('.slider-nav ul').pep({
+    //     axis: 'x',
+    //     velocityMultiplier: 0,
+    //     removeMargins: false,
+    //     stop: dragStop,
+    //     drag: dragDuring,
+    //     cssEaseDuration: 300,
+    //     cssEaseString: 'easeOutExpo',
+    //     useCSSTranslation: false,
+    //     shouldEase: false,
+    //     callIfNotStarted: []
+    // });
 
-    $('.slider-content').pep({
-        axis: 'x',
-        velocityMultiplier: 0,
-        removeMargins: false,
-        stop: pageDragStop,
-        drag: pageDragDuring,
-        cssEaseDuration: 300,
-        cssEaseString: 'easeOutExpo',
-        useCSSTranslation: false,
-        shouldEase: false,
-        callIfNotStarted: []
-    });
+    // $('.slider-content').pep({
+    //     axis: 'x',
+    //     velocityMultiplier: 0,
+    //     removeMargins: false,
+    //     stop: pageDragStop,
+    //     drag: pageDragDuring,
+    //     cssEaseDuration: 300,
+    //     cssEaseString: 'easeOutExpo',
+    //     useCSSTranslation: false,
+    //     shouldEase: false,
+    //     callIfNotStarted: []
+    // });
 
     var dragged =  0;
     $('.slider-nav li')
@@ -61,7 +61,7 @@ function dragStop() {
 	
 	slideAll(navIndex)	
 
-	return false;
+	// return false;
 
 }
 function pageDragStop() {
@@ -74,7 +74,7 @@ function pageDragStop() {
 	
 	slideAll(pageIndex)
 
-	return false;
+	// return false;
 
 }
 function dragDuring() {
@@ -96,6 +96,7 @@ function pageDragDuring() {
 
 	$('.slider-nav ul').css('left', navMargin)
 	$('.selector ul').css('marginLeft', selectMargin-2);	
+	console.log(selectMargin-2)
 
 }
 
@@ -118,19 +119,20 @@ function slideAll (index) {
 	var time = 700
 
 	var pageMargin = index * 100
-
-	$('.slider-content').animate({
+	
+	$('.selector ul').stop().animate({
+		marginLeft: r
+	}, time, e)
+	$('.slider-nav ul').stop().animate({
+		left: m
+	}, time, e)
+	$('.slider-content').stop().animate({
 		left: '-' + pageMargin + '%'
 	}, time, e)
 
-	$('.selector ul').animate({
-		marginLeft: r
-	}, time, e)
-	$('.slider-nav ul').animate({
-		left: m
-	}, time, e)
+	console.log('** ' + r)
 
-	setTimeout(goalFunc(index))
+	goalFunc(index)
 
     var newTitle = $('.slidee').eq(index).attr('class').split('slidee ')[1]
     if (newTitle != view.title) {
@@ -141,5 +143,4 @@ function slideAll (index) {
 function goalFunc(index) {
 	$('.slidee.goals .module').eq(index-1).removeClass('goalClosed');
 	$('.slidee.goals .module').not(':eq(' + (index-1) + ')').addClass('goalClosed');
-	console.log(index)
 }
