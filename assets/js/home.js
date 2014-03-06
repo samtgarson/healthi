@@ -1,113 +1,40 @@
+var navDealer, contentDealer
 function homeFunc() {
 	$('.closed').removeClass('closed');
-	var dealer = new Dragdealer('dragwrapper', {
+	navDealer = new Dragdealer('navWrapper', {
 		x: 1,
 		steps: 4,
 		loose: true,
-		animationCallback: function(x, y) {
-			$('.selector ul').css('margin-left', (x*240)-240 + 'px')
-			console.log(x)
-		}
+		animationCallback: navDuring
 	});
-	console.log(dealer)
-    // $('.slider-nav ul').pep({
-    //     axis: 'x',
-    //     velocityMultiplier: 0,
-    //     removeMargins: false,
-    //     stop: dragStop,
-    //     drag: dragDuring,
-    //     cssEaseDuration: 300,
-    //     cssEaseString: 'easeOutExpo',
-    //     useCSSTranslation: false,
-    //     shouldEase: false,
-    //     callIfNotStarted: []
-    // });
-
-    // $('.slider-content').pep({
-    //     axis: 'x',
-    //     velocityMultiplier: 0,
-    //     removeMargins: false,
-    //     stop: pageDragStop,
-    //     drag: pageDragDuring,
-    //     cssEaseDuration: 300,
-    //     cssEaseString: 'easeOutExpo',
-    //     useCSSTranslation: false,
-    //     shouldEase: false,
-    //     callIfNotStarted: []
-    // });
+	contentDealer= new Dragdealer('contentWrapper', {
+		x: 1,
+		steps: 4,
+		loose: true,
+		animationCallback: contentDuring
+	})
 
     var dragged =  0;
-    $('.slider-nav li')
-    	.on('touchstart mousedown', function () {
-    		dragged = 0;
-	    	$(this).on('touchmove mousemove', function () {
-	    		dragged = 1
-	    	});
-	    })
-	    .on('touchend mouseup', function () {
-	    	if (!dragged) {
-	    		slideAll($(this).index())
-	    	}
-	    })
+    $('#navWrapper').on('click', 'li', function(e) {
+    	e.preventDefault();
+    	var index = $(e.currentTarget).index()
+    	console.log($(e.currentTarget).index())
+    	navDealer.setStep(4-index, 0)
+    })
 }
-// function nearest(a, n) {
-// 	var curr = a[0]
-// 	for (i = 0; i < a.length; ++i) {
-// 		v = a[i]
-// 		if (Math.abs(n - v) < Math.abs(n - curr)) {
-// 			curr = v
-// 		}
-// 		return curr
-// 	}
-// }
-function dragStop() {
-	var ease = 'easeOutExpo';
-	var time = 700
-
-	var navArray = [0, -79, -158, -237];
-	var navTarget = parseInt($('.selector ul').css('marginLeft'));
-	var navIndex = nearest(navTarget, navArray)[1]
-	// var navMargin = $('body').width()/2 + navResult
-	
-	slideAll(navIndex)	
-
-	// return false;
-
+function navDuring(x, y) {
+	if (typeof contentDealer != 'undefined') {
+		$('.slider-content .handle').css('left', (contentDealer.bounds.availWidth * x) + 'px')
+	} else {
+		console.log('boo')
+	}
+	$('.selector ul').css('margin-left', (x*240)-240 + 'px');
 }
-function pageDragStop() {
-	var ease = 'easeOutExpo';
-	var time = 700
-	
-	var pageArray = [0, -100, -200, -300]
-	var pageTarget = parseInt($('.slider-content').css('left')) / $('.slider-content').width();
-	var pageIndex = nearest(pageTarget * 400, pageArray)[1]
-	
-	slideAll(pageIndex)
-
-	// return false;
-
-}
-function dragDuring() {
-	var l = parseInt($('.slider-nav ul').css('left')) - $('body').width()/2
-
-	$('.selector ul').css('marginLeft', l-2);	
-
-	var dragPercent = parseFloat($('.selector ul').css('margin-left')) / $('.slider-nav ul').width()
-	var pageMargin = $('.slider-content').width() * dragPercent
-
-	$('.slider-content').css('left', pageMargin)
-}
-
-function pageDragDuring() {
-	var bodyW = $('body').width()/2;
-	var dragPercent = parseInt($('.slider-content').css('left')) / $('.slider-content').width() ;
-	var selectMargin = (dragPercent * $('.slider-nav ul').width())
-	var navMargin = bodyW  + selectMargin
-
-	$('.slider-nav ul').css('left', navMargin)
-	$('.selector ul').css('marginLeft', selectMargin-2);	
-	console.log(selectMargin-2)
-
+function contentDuring(x, y) {
+	if (typeof navDealer != 'undefined') {
+		$('.slider-nav .handle').css('left', (240 * x) + 'px')
+		$('.selector ul').css('margin-left', (x*240)-240 + 'px');
+	}
 }
 
 function nearest (num, arr) {
