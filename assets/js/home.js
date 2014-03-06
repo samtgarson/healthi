@@ -29,14 +29,25 @@ function navDuring(x, y) {
 		console.log('boo')
 	}
 	$('.selector ul').css('margin-left', (x*240)-240 + 'px');
+	goalFunc(Math.abs(this.getStep()[0]-4));
+	sliderTitle(x);
 }
+var currentX = 0
 function contentDuring(x, y) {
 	if (typeof navDealer != 'undefined') {
 		$('.slider-nav .handle').css('left', (240 * x) + 'px')
 		$('.selector ul').css('margin-left', (x*240)-240 + 'px');
 	}
+	goalFunc(Math.abs(this.getStep()[0]-4));
+	sliderTitle(x)
 }
-
+function sliderTitle(x) {
+	var newTitle = (x < .8) ? 'goals' : 'home'
+    if (newTitle != view.title) {
+        view.title = newTitle
+        if ($('footer').scrollTop()) {$('footer').scrollTop(0)}
+    }
+}
 function nearest (num, arr) {
 	var i = 0
 	var res = arr.reduce(function (prev, curr) {
@@ -69,7 +80,7 @@ function slideAll (index) {
 
 	console.log('** ' + r)
 
-	goalFunc(index)
+	
 
     var newTitle = $('.slidee').eq(index).attr('class').split('slidee ')[1]
     if (newTitle != view.title) {
