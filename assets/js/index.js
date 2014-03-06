@@ -18,7 +18,9 @@ var app = new Vue({
         menuOpen: false,
         views: [
             {name: 'home', icon: 'h'},
-            {name: 'settings', icon: 'C'}
+            {name: 'about', icon: 'a'},
+            {name: 'settings', icon: 'C'},
+
         ]
     },
     methods: {
@@ -63,8 +65,6 @@ function loadContent() {
         setTimeout(function() {eval(view.name + 'Func()')}, 350)
     })    
 }
-
-
 
 function closeMenu () {
     this.changeTitle(view.title)
