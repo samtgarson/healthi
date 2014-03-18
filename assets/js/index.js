@@ -63,7 +63,7 @@ function appReady() {
     if (typeof storage('user') == 'undefined') {
         this.changePage('login')
     } else {
-        
+        loadData()
     }
 }
 function loadData() {

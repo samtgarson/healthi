@@ -4,7 +4,7 @@ function loginInit() {
 function loginClick () {
 	var $this = this		
     console.log('clicked!')
-    var url = 'http://www.json-generator.com/j/bOzOkHnZNK?indent=4';
+    var url = 'http://www.json-generator.com/j/chKopNNLUy?indent=4';
     $.get(url, function(json) {
         storage.set(json)
     }).done(function() {

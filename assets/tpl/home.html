@@ -21,7 +21,9 @@
         <div id="contentWrapper">
             <div class="handle">
                 <div class="slidee home">
-                    <div class="centered plain module"><p></p></div>
+                    <div class="centered plain module">
+                        <p>Hey {{user.name.first}}!</p>
+                    </div>
                     <div class="module"><p>Home 2</p></div>
                 </div>
                 <div v-component="card" class="slidee goals" v-ref="cardref" v-repeat="goals">
