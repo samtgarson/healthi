@@ -1,6 +1,6 @@
 function viewReady() {
-    setTimeout(this.init, 0)
-    this.$watch('title', this.$parent.changeTitle)
+    setTimeout(function(){app.$.View.init();}, 0);
+    this.$watch('title', this.$parent.changeTitle);
 }
 
 // Register Home view
@@ -10,11 +10,13 @@ Vue.component('home', {
     data: {
         name: 'home',
         title: 'home',
+        currentGoal: -1,
+        ticks: [ [], [], [] ]
     },
     methods: {
         init: homeInit
     }
-})
+});
 
 // Register Login view
 Vue.component('login', {
@@ -27,7 +29,7 @@ Vue.component('login', {
         init: loginInit,
         loginClick: loginClick
     }
-})
+});
 
 
 //define the app
@@ -46,81 +48,90 @@ var app = new Vue({
         goals: []
     },
     methods: {
-        toggleMenu: function() {!this.menuOpen ? this.openMenu() : this.closeMenu()},
+        toggleMenu: function() {
+            !this.menuOpen ? this.openMenu() : this.closeMenu();
+        },
         closeMenu: closeMenu,
         changeTitle: changeTitle,
         openMenu: openMenu,
         changePage: changePage,
         appReady: appReady,
         loadData: loadData,
+        syncUser: syncUser,
+        syncGoals: syncGoals,
         logout: logout
     },
-})
+});
 
 function appReady() {
 
     // If user is not logged in, goto login view
     if (typeof storage('user') == 'undefined') {
-        this.changePage('login')
+        this.changePage('login');
     } else {
-        loadData()
+        // Else load user from storage
+        setTimeout('app.loadData()', 0);
     }
 }
 function loadData() {
-    this.user = storage('user') // Load User object into app
-    this.goals = storage('goals') // Load Goals list into app
-    for (var i in this.goals) { // Create tick lists
-        this.goals[i].ticks = []
-        var r = this.goals[i].repeat
-        var d = this.goals[i].done
-        for (var j= 0; j < r; j++) {
-            this.goals[i].ticks[j] = (j < d) ? true : false
-        }
-    }
-    this.changePage('home')
+    this.user = storage('user'); // Load User object into app
+    this.goals = storage('goals'); // Load Goals list into app
+
+    this.$watch('user', this.syncUser);
+    this.$watch('goals', this.syncGoals);
+
+    this.changePage('home');
 }
 // Change assigned component
 function changePage(newpage) {
     this.view = newpage;
 
 
-    setTimeout(function(){this.changeTitle(app.$.View.title)}, 0);
+    setTimeout(function(){app.changeTitle(app.$.View.title);}, 0);
 }
 
 // Close menu
 function closeMenu (item) {
     // if new page selected, change view
-    if (typeof item != 'undefined' && !$(item.$el).hasClass('current')) this.changePage(item.name)
-    this.changeTitle(this.$.View.title)
-    this.menuOpen = false
+    if (typeof item != 'undefined' && !$(item.$el).hasClass('current')) this.changePage(item.name);
+    this.changeTitle(this.$.View.title);
+    this.menuOpen = false;
 }
 
 
 // Open Menu
 function openMenu () {
-    this.menuOpen = true
-    this.changeTitle('menu')
+    this.menuOpen = true;
+    this.changeTitle('menu');
 }
 
 // New title transition
 function changeTitle (newTitle) {
     if (newTitle != $('span.old').text().toLowerCase()){
         document.title = 'Healthi: ' + newTitle.substr(0, 1).toUpperCase() + newTitle.substr(1, newTitle.length);
-        $('h1#title span').addClass('old')
-        $('h1#title').prepend("<span class='new'>" + newTitle + "</span>")
+        $('h1#title span').addClass('old');
+        $('h1#title').prepend("<span class='new'>" + newTitle + "</span>");
         setTimeout(function() {
-            $('.new').css('margin-top', 0)
+            $('.new').css('margin-top', 0);
             setTimeout (function(){
-                $('.old').remove()
-                $('span.new').removeClass('new')
-            }, 400)
-        }, 0)
+                $('.old').remove();
+                $('span.new').removeClass('new');
+            }, 400);
+        }, 0);
     }
+}
+
+// Sync app with storage
+function syncUser (newval) {
+    storage.set('user', newval);
+}
+function syncGoals (newval) {
+    storage.set('goals', newval);
 }
 
 // Logout 
 function logout () {
     storage.empty();
     this.changePage('login');
-    this.closeMenu()
+    this.closeMenu();
 }
