@@ -55,8 +55,7 @@
         <p>{{timeframe | capitalize}}</p>
     </div>
     <ul>
-        <li v-repeat="repeat" class="icon" v-class="done: done">t</li>
-        <li class="icon">t</li>
+        <li v-repeat="ticks" class="icon" v-class="done: $value">t</li>
     </ul>
 </div>
 </script>

@@ -52,6 +52,7 @@ var app = new Vue({
         openMenu: openMenu,
         changePage: changePage,
         appReady: appReady,
+        loadData: loadData,
         logout: logout
     },
 })
@@ -62,12 +63,22 @@ function appReady() {
     if (typeof storage('user') == 'undefined') {
         this.changePage('login')
     } else {
-        this.user = storage('user')
-        this.goals = storage('goals')
-        this.changePage('home')
+        
     }
 }
-
+function loadData() {
+    this.user = storage('user') // Load User object into app
+    this.goals = storage('goals') // Load Goals list into app
+    for (var i in this.goals) { // Create tick lists
+        this.goals[i].ticks = []
+        var r = this.goals[i].repeat
+        var d = this.goals[i].done
+        for (var j= 0; j < r; j++) {
+            this.goals[i].ticks[j] = (j < d) ? true : false
+        }
+    }
+    this.changePage('home')
+}
 // Change assigned component
 function changePage(newpage) {
     this.view = newpage;
