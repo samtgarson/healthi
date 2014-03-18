@@ -25,7 +25,6 @@ function cardReady() {
 
 // Complete a task
 function complete() {
-    console.log(this.$index);
     this.done++;
     this.ticks.$set(this.done-1, true);
     if (this.done == this.repeat) {

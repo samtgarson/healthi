@@ -54,7 +54,6 @@ var app = new Vue({
 });
 
 function appReady() {
-
     // If user is not logged in, goto login view
     if (!storage('user')) {
         this.changePage('login');
@@ -64,24 +63,24 @@ function appReady() {
         setTimeout(function() {t.loadData();}, 0);
     }
 }
+
 function loadData() {
     this.user = storage('user'); // Load User object into app
     this.goals = storage('goals'); // Load Goals list into app
 
+    // Init sync
     this.$watch('user', this.syncUser);
     this.$watch('goals', this.syncGoals);
 
     this.changePage('home');
 }
+
 // Change assigned component
 function changePage(newpage) {
     this.view = newpage;
-
-
-    setTimeout(function(){app.changeTitle(app.$.View.title);}, 0);
+    setTimeout(function(){app.changeTitle(app.$.View.title);}, 0); // Change title
 }
 
-// Close menu
 function closeMenu (item) {
     // if new page selected, change view
     if (typeof item != 'undefined' && !$(item.$el).hasClass('current')) this.changePage(item.name);
@@ -89,8 +88,6 @@ function closeMenu (item) {
     this.menuOpen = false;
 }
 
-
-// Open Menu
 function openMenu () {
     this.menuOpen = true;
     this.changeTitle('menu');
@@ -98,10 +95,12 @@ function openMenu () {
 
 // New title transition
 function changeTitle (newTitle) {
+    // If new title is not already the title
     if (newTitle != $('span.old').text().toLowerCase()){
-        document.title = 'Healthi: ' + newTitle.substr(0, 1).toUpperCase() + newTitle.substr(1, newTitle.length);
+        document.title = 'Healthi: ' + newTitle.substr(0, 1).toUpperCase() + newTitle.substr(1, newTitle.length); // Change browser title
         $('h1#title span').addClass('old');
         $('h1#title').prepend("<span class='new'>" + newTitle + "</span>");
+        // Animate in new title, remove old
         setTimeout(function() {
             $('.new').css('margin-top', 0);
             setTimeout (function(){
@@ -123,7 +122,6 @@ function syncGoals (newval) {
 // Logout 
 function logout () {
     storage.empty();
-    console.log(this)
     this.user = false;
     this.goals = false;
     this.changePage('login');

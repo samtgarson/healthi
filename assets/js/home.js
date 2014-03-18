@@ -23,7 +23,7 @@ function homeInit() {
 }
 
 function replaceCard (index) {
-    console.log('replacing ' + index)
+    console.log('replacing ' + index);
 }
 
 //// INTERFACE
