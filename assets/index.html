@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Healthi: Home</title>
+    <meta name="description" content="">
+    <meta name="author" content="Sam Garson">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="stylesheet" href="build/css/style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="build/img/favicon.ico">
+    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/537a8b78ab/UntitledProject1/style.css">
+    <link href="/build/img/icon-120.png" sizes="120x120" rel="apple-touch-icon">
+
+    <script>
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body v-class="open: menuOpen">
+    <div id="wrapper">
+        <nav>
+            <a class="lines-button" id="menu" type="button" v-on="click: toggleMenu">
+                <span class="lines"></span>
+            </a>
+            <h1 id="title"><span class="old" >Home</span></h1>
+        </nav>
+        <section class="main" v-class="name" v-attr="title:title" v-view="view" v-with="user:user, goals:goals" v-ref="View">
+
+        </section>
+        <section class="menu">
+            <ul id="pages">
+                <li v-repeat="views" v-on="click: closeMenu(this)" v-class="current:app.view == $name">
+                    <span class="icon">{{icon}}</span>
+                    {{name}}
+                    <span class="icon arrow">d</span>
+                </li>
+                <li v-on="click:logout" id="logout">
+                    <span class="icon">l</span>
+                    logout
+                    <span class="icon arrow"></span>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- build:section templates --><!-- /build -->
+    <script src="build/js/lostorage.js"></script>
+    <script src="build/js/dragdealer.js"></script>
+    <script src="build/js/jquery.js"></script>
+    <script src="build/js/vue.min.js"></script>
+
+    <script src="build/js/script.min.js"></script>
+
+
+</body>
+
+</html>

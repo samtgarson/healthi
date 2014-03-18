@@ -1,6 +1,18 @@
-var navDealer, contentDealer
-function homeFunc() {
+// Register Card template
+Vue.component('card', {
+	template: '#cardTpl'
+})
+
+// Init Home component
+function homeInit() {
+	console.log('home init')
 	$('.closed').removeClass('closed');
+	initSliders()
+}
+var navDealer, contentDealer;
+
+// Init sliders
+function initSliders() {
 	navDealer = new Dragdealer('navWrapper', {
 		x: 1,
 		steps: 4,
@@ -14,80 +26,52 @@ function homeFunc() {
 		animationCallback: contentDuring
 	})
 
+	// Setup click function for nav slider
     var dragged =  0;
     $('#navWrapper').on('click', 'li', function(e) {
     	e.preventDefault();
     	var index = $(e.currentTarget).index()
-    	console.log($(e.currentTarget).index())
     	navDealer.setStep(4-index, 0)
     })
 }
+
+// Attach content position to nav slider position
+var currentStep = 0
 function navDuring(x, y) {
 	if (typeof contentDealer != 'undefined') {
-		$('.slider-content .handle').css('left', (contentDealer.bounds.availWidth * x) + 'px')
+		$('.slider-content .handle').css('left', (($('#contentWrapper').width() - $('#contentWrapper .handle').width()) * x) + 'px')
+		console.log(x)
 	} else {
-		console.log('boo')
 	}
 	$('.selector ul').css('margin-left', (x*240)-240 + 'px');
-	goalFunc(Math.abs(this.getStep()[0]-4));
+	var newStep = Math.abs(this.getStep()[0]-4)
+	if (currentStep != newStep) goalFunc(newStep);
+	currentStep = newStep;
 	sliderTitle(x);
 }
-var currentX = 0
+
+// Attach nav slider position to content position
 function contentDuring(x, y) {
 	if (typeof navDealer != 'undefined') {
 		$('.slider-nav .handle').css('left', (240 * x) + 'px')
 		$('.selector ul').css('margin-left', (x*240)-240 + 'px');
 	}
-	goalFunc(Math.abs(this.getStep()[0]-4));
+	var newStep = Math.abs(this.getStep()[0]-4)
+	if (currentStep != newStep) goalFunc(newStep);
+	currentStep = newStep;
 	sliderTitle(x)
 }
+
+// Change page title on slide
 function sliderTitle(x) {
 	var newTitle = (x < .8) ? 'goals' : 'home'
-    if (newTitle != view.title) {
-        view.title = newTitle
+    if (newTitle != app.$.View.title) {
+        app.$.View.title = newTitle
         if ($('footer').scrollTop()) {$('footer').scrollTop(0)}
     }
 }
-function nearest (num, arr) {
-	var i = 0
-	var res = arr.reduce(function (prev, curr) {
-		if (Math.abs(curr - num) < Math.abs(prev - num)) {
-			i ++;
-			return curr
-		} else {
-    		return prev;
-    	}
-	});
-	return [res, i]
-}
-function slideAll (index) {
-	var r = index * -79
-	var m = $('body').width()/2 + r
-	var e = 'easeOutExpo';
-	var time = 700
 
-	var pageMargin = index * 100
-	
-	$('.selector ul').stop().animate({
-		marginLeft: r
-	}, time, e)
-	$('.slider-nav ul').stop().animate({
-		left: m
-	}, time, e)
-	$('.slider-content').stop().animate({
-		left: '-' + pageMargin + '%'
-	}, time, e)
-
-	console.log('** ' + r)
-
-	
-
-    var newTitle = $('.slidee').eq(index).attr('class').split('slidee ')[1]
-    if (newTitle != view.title) {
-        view.title = newTitle
-        if ($('footer').scrollTop()) {$('footer').scrollTop(0)}
-    }
-}
+// Entrance animation for cards
 function goalFunc(index) {
 	$('.slidee.goals .module').eq(index-1).removeClass('goalClosed');
 	$('.slidee.goals .module').not(':eq(' + (index-1) + ')').addClass('goalClosed');

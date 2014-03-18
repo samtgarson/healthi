@@ -123,7 +123,7 @@
 
     .slidee {
         display: inline-block;
-        width: 100% / ($content-count);
+        width: 24.95%;
         // padding-top: 10px;
         padding-bottom: 12em;
         height: 100%;
@@ -161,6 +161,9 @@
                 transition: $transition;
                 margin-top: -40px;
 
+                p {
+                    font-family: GLight;
+                }
                 div.subject {
                     font-family: GBook;
                     font-size: 1.3em;
@@ -211,6 +214,7 @@ footer {
     background: white;
     color: $dark-grey;
     bottom: 0;
+    left: 0;
     position: absolute;
     width: 100%;
     font-size: 0.8em;

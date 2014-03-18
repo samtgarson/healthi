@@ -6,6 +6,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-imagemin");
+    grunt.loadNpmTasks('grunt-html-build');
+    grunt.loadNpmTasks('grunt-responsive-images');
  
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -68,9 +70,43 @@ module.exports = function(grunt) {
         }]
       }
     },
+
+    htmlbuild: {
+      build: {
+        src: 'assets/index.html',
+        options: {
+          sections: {
+            templates: 'assets/tpl/**/*.html'
+          }
+        }
+      }
+    },
+
+    responsive_images: {
+      build: {  
+        options: {
+          sizes: [{ name: 'small', width: 320 },{ name: 'medium', width: 640 },{ name: 'large', width: 1280 }]
+          // Task-specific options go here.
+        },
+        files: [{
+          expand: true,
+          src: ['**/*.{jpg,jpeg,png}'],
+          cwd: 'assets/img/src',
+          dest: 'assets/img/'
+        }]
+      }
+    },
+
     // Watch
  
     watch: {
+      htmlbuild: {
+        files: ['assets/index.html', 'assets/tpl/*.html'],
+        tasks: ['htmlbuild:build'],
+        options: {
+            livereload: false
+        }
+      },
       scripts: {
           files: ['assets/js/*.js'],
           tasks: ['uglify:dev'],
