@@ -33,7 +33,7 @@
     </div>
     <footer class="closed">
         <ul id="tab">
-            <li id="done"><div class="icon">t</div><label>Done</label></li>
+            <li id="done" v-on="click:this.$.cardref[this.currentGoal].complete()"><div class="icon">t</div><label>Done</label></li>
             <li id="skip"><div class="icon">s</div><label>Skip</label></li>
             <li id="info"><div class="icon">i</div><label>More Info</label></li>
             <li id="comment"><div class="icon">c</div><label>Comment</label></li>

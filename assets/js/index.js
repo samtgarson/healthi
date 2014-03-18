@@ -1,22 +1,12 @@
 function viewReady() {
-    setTimeout(function(){app.$.View.init();}, 0);
+    var t = this;
+    setTimeout(function(){t.init();}, 100);
     this.$watch('title', this.$parent.changeTitle);
 }
 
-// Register Home view
-Vue.component('home', {
-    template: '#homeTpl',
-    ready: viewReady,
-    data: {
-        name: 'home',
-        title: 'home',
-        currentGoal: -1,
-        ticks: [ [], [], [] ]
-    },
-    methods: {
-        init: homeInit
-    }
-});
+function test () {
+    console.log('testing');
+}
 
 // Register Login view
 Vue.component('login', {
@@ -66,11 +56,12 @@ var app = new Vue({
 function appReady() {
 
     // If user is not logged in, goto login view
-    if (typeof storage('user') == 'undefined') {
+    if (!storage('user')) {
         this.changePage('login');
     } else {
         // Else load user from storage
-        setTimeout('app.loadData()', 0);
+        var t = this;
+        setTimeout(function() {t.loadData();}, 0);
     }
 }
 function loadData() {
@@ -132,6 +123,9 @@ function syncGoals (newval) {
 // Logout 
 function logout () {
     storage.empty();
+    console.log(this)
+    this.user = false;
+    this.goals = false;
     this.changePage('login');
     this.closeMenu();
 }
