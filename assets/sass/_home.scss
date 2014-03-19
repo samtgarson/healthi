@@ -129,7 +129,9 @@
         height: 100%;
         box-sizing: border-box;
         vertical-align: top;
-        transition: padding $transition;
+        margin-top: auto;
+        overflow: hidden;
+        transition: padding $transition, margin $transition;
 
         .module {
             border-radius: $module-radius;
@@ -142,15 +144,6 @@
 
             &.plain {
                 background-color: transparent;
-            }
-
-            &.goalClosed ul li {
-                opacity: 0;
-                margin-bottom: -50px !important;
-                transition-delay: 0ms !important;
-                transition: 200ms !important;
-
-
             }
 
             div.vcentered {
@@ -173,10 +166,31 @@
             }
         }
 
+        &.goals.slideeClosed .module {
+            margin-top: -100%;
+        }
+
         &.goals .module {
             @include verticalAlign();
             height: 100%;
             position: relative;
+            opacity: 1;
+            transition: margin-top $transition, opacity $transition;
+
+            &.goalClosed ul li {
+                opacity: 0;
+                margin-bottom: -50px !important;
+                transition-delay: 0ms !important;
+                transition: 200ms !important;
+            }
+
+            &.plain.v-leave {
+                opacity: 0;
+            };
+
+            &.v-leave {
+                margin-top: 100%;
+            }
 
             ul {
                 bottom: 10px;

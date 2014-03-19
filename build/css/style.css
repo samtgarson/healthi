@@ -405,7 +405,9 @@ section.menu ul li .arrow {
   height: 100%;
   box-sizing: border-box;
   vertical-align: top;
-  transition: padding 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  margin-top: auto;
+  overflow: hidden;
+  transition: padding 500ms cubic-bezier(0.77, 0, 0.175, 1), margin 500ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 .home .slider-content .slidee .module {
   border-radius: 2px;
@@ -418,12 +420,6 @@ section.menu ul li .arrow {
 }
 .home .slider-content .slidee .module.plain {
   background-color: transparent;
-}
-.home .slider-content .slidee .module.goalClosed ul li {
-  opacity: 0;
-  margin-bottom: -50px !important;
-  transition-delay: 0ms !important;
-  transition: 200ms !important;
 }
 .home .slider-content .slidee .module div.vcentered {
   text-align: center;
@@ -442,9 +438,14 @@ section.menu ul li .arrow {
   height: 1em;
   margin-bottom: .3em;
 }
+.home .slider-content .slidee.goals.slideeClosed .module {
+  margin-top: -100%;
+}
 .home .slider-content .slidee.goals .module {
   height: 100%;
   position: relative;
+  opacity: 1;
+  transition: margin-top 500ms cubic-bezier(0.77, 0, 0.175, 1), opacity 500ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 .home .slider-content .slidee.goals .module:before {
   content: '';
@@ -457,6 +458,18 @@ section.menu ul li .arrow {
 .home .slider-content .slidee.goals .module div.vcentered {
   vertical-align: middle;
   display: inline-block;
+}
+.home .slider-content .slidee.goals .module.goalClosed ul li {
+  opacity: 0;
+  margin-bottom: -50px !important;
+  transition-delay: 0ms !important;
+  transition: 200ms !important;
+}
+.home .slider-content .slidee.goals .module.plain.v-leave {
+  opacity: 0;
+}
+.home .slider-content .slidee.goals .module.v-leave {
+  margin-top: 100%;
 }
 .home .slider-content .slidee.goals .module ul {
   bottom: 10px;

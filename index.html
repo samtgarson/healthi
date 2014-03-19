@@ -81,7 +81,7 @@
                     </div>
                     <div class="module"><p>Home 2</p></div>
                 </div>
-                <div v-component="card" class="slidee goals" v-ref="cardref" v-repeat="goals">
+                <div v-component="card" class="slidee goals slideeClosed" v-ref="cardref" v-repeat="goals">
                 </div>
             </div>
         </div>
@@ -105,16 +105,21 @@
 </script>
 
 <script type="text/template" id="cardTpl">
-<div class="module goalClosed">
-    <div class="vcentered">
-        <p>{{verb | capitalize}}</p>
-        <div class="subject capitalize">{{subject}}</div>
-        <p>{{timeframe | capitalize}}</p>
+    <div v-transition v-if="completed" class="module" v-class="goalClosed:currentGoal != $index">
+        <div class="vcentered">
+            <p>{{verb | capitalize}}</p>
+            <div class="subject capitalize">{{subject}}</div>
+            <p>{{timeframe | capitalize}}</p>
+        </div>
+        <ul>
+            <li v-repeat="ticks" class="icon" v-class="done: $value">t</li>
+        </ul>
     </div>
-    <ul>
-        <li v-repeat="ticks" class="icon" v-class="done: $value">t</li>
-    </ul>
-</div>
+</script>
+<script type="text/template" id="cardFinished">
+    <div class="module plain">
+        <div class="subject capitalize">Nice one!</div>
+    </div>
 </script>
 <script type="text/template" id="loginTpl">
 	<button id="login" v-on="click: loginClick">Login!</button>
