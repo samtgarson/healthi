@@ -4,6 +4,11 @@ Vue.component('card', {
     data: {
         ticks: []
     },
+    computed: {
+        completed: function() {
+            return (this.done != this.repeat);
+        }
+    },
     ready: cardReady,
     methods: {
         complete: complete,
@@ -16,6 +21,10 @@ function cardReady() {
     // Create tick lists
     var r = this.repeat;
     var d = this.done;
+    var t = this;
+    setTimeout(function() {
+        t.$el.classList.remove('slideeClosed');
+    }, 200);
     this.ticks = [];
     for (var j= 0; j < r; j++) {
         var b = (j < d) ? true : false;

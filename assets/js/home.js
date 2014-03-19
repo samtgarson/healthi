@@ -22,8 +22,16 @@ function homeInit() {
     this.$on('replaceCard', replaceCard);
 }
 
+// Replace completed Card
 function replaceCard (index) {
-    console.log('replacing ' + index);
+    var url = "http://www.json-generator.com/j/cfFuVRUpSG?indent=4";
+    var i = Math.floor((Math.random()*2));
+    $.getJSON(url, function(data) {
+        var newGoal = data[i];
+        setTimeout(function(){
+            app.goals.$set(index, newGoal);
+        }, 400);
+    });
 }
 
 //// INTERFACE
@@ -61,7 +69,7 @@ function navDuring(x, y) {
     }
     $('.selector ul').css('margin-left', (x*240)-240 + 'px');
     var newStep = Math.abs(this.getStep()[0]-4);
-    if (currentStep != newStep) goalFunc(newStep);
+    app.$.View.currentGoal = newStep-1;
     currentStep = newStep;
     sliderTitle(x);
 }
@@ -73,7 +81,7 @@ function contentDuring(x, y) {
         $('.selector ul').css('margin-left', (x*240)-240 + 'px');
     }
     var newStep = Math.abs(this.getStep()[0]-4);
-    if (currentStep != newStep) goalFunc(newStep);
+    app.$.View.currentGoal = newStep-1;
     currentStep = newStep;
     sliderTitle(x);
 }
@@ -89,7 +97,7 @@ function sliderTitle(x) {
 
 // Entrance animation for cards
 function goalFunc(index) {
-    app.$.View.currentGoal = index-1;
-    $('.slidee.goals .module').eq(index-1).removeClass('goalClosed');
-    $('.slidee.goals .module').not(':eq(' + (index-1) + ')').addClass('goalClosed');
+    
+    // $('.slidee.goals .module').eq(index-1).removeClass('goalClosed');
+    // $('.slidee.goals .module').not(':eq(' + (index-1) + ')').addClass('goalClosed');
 }

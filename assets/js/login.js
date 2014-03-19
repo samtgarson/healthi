@@ -3,7 +3,7 @@ function loginInit() {
 }
 function loginClick () {
 	var $this = this;
-    var url = 'http://www.json-generator.com/j/chKopNNLUy?indent=4';
+    var url = 'http://www.json-generator.com/j/bVsjopTbkO?indent=4';
     $.get(url, function(json) {
         storage.set(json);
     }).done(function() {
