@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="build/css/style.css" />
     <link rel="shortcut icon" type="image/x-icon" href="build/img/favicon.ico">
-    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/537a8b78ab/UntitledProject1/style.css">
+    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/77c7ab5335/UntitledProject1/style.css">
     <link href="/build/img/icon-120.png" sizes="120x120" rel="apple-touch-icon">
 
     <script>
@@ -105,7 +105,7 @@
 </script>
 
 <script type="text/template" id="cardTpl">
-    <div v-transition v-if="completed" class="module" v-class="goalClosed:currentGoal != $index">
+    <div v-transition v-if="!completed" class="module" v-class="goalClosed:currentGoal != $index">
         <div class="vcentered">
             <p>{{verb | capitalize}}</p>
             <div class="subject capitalize">{{subject}}</div>
@@ -115,11 +115,11 @@
             <li v-repeat="ticks" class="icon" v-class="done: $value">t</li>
         </ul>
     </div>
-</script>
-<script type="text/template" id="cardFinished">
-    <div class="module plain">
-        <div class="subject capitalize">Nice one!</div>
+    <div v-if="completed" v-component="congrats" v-with="index:$index" class="module plain">
     </div>
+</script>
+<script type="text/template" id="congratsTpl">
+    <div class="subject capitalize vcentered"><span class="icon">T</span>{{msg}}</div>
 </script>
 <script type="text/template" id="loginTpl">
 	<button id="login" v-on="click: loginClick">Login!</button>

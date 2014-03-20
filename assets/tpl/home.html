@@ -50,7 +50,7 @@
 </script>
 
 <script type="text/template" id="cardTpl">
-    <div v-transition v-if="completed" class="module" v-class="goalClosed:currentGoal != $index">
+    <div v-transition v-if="!completed" class="module" v-class="goalClosed:currentGoal != $index">
         <div class="vcentered">
             <p>{{verb | capitalize}}</p>
             <div class="subject capitalize">{{subject}}</div>
@@ -60,9 +60,9 @@
             <li v-repeat="ticks" class="icon" v-class="done: $value">t</li>
         </ul>
     </div>
-</script>
-<script type="text/template" id="cardFinished">
-    <div class="module plain">
-        <div class="subject capitalize">Nice one!</div>
+    <div v-if="completed" v-component="congrats" v-with="index:$index" class="module plain">
     </div>
+</script>
+<script type="text/template" id="congratsTpl">
+    <div class="subject capitalize vcentered"><span class="icon">T</span>{{msg}}</div>
 </script>

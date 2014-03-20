@@ -175,7 +175,7 @@
             height: 100%;
             position: relative;
             opacity: 1;
-            transition: margin-top $transition, opacity $transition;
+            transition: margin $transition, opacity $transition;
 
             &.goalClosed ul li {
                 opacity: 0;
@@ -184,12 +184,27 @@
                 transition: 200ms !important;
             }
 
-            &.plain.v-leave {
+            &.plain {
                 opacity: 0;
-            };
+                margin-top: -100px;
+                font-family: GMed;
+
+                .icon {
+                    margin-right: .4em;
+                    font-size: 1.2em;
+                    vertical-align: bottom;
+                }
+            }
+
+            // &.plain.v-leave {
+            //     animation: fadeout .3s;
+            // }
+            // &.plain.v-enter {
+            //     animation: fadein .3s;
+            // }
 
             &.v-leave {
-                margin-top: 100%;
+                margin-top: 200%;
             }
 
             ul {

@@ -6,13 +6,36 @@ Vue.component('card', {
     },
     computed: {
         completed: function() {
-            return (this.done != this.repeat);
+            return (this.done >= this.repeat);
         }
     },
     ready: cardReady,
     methods: {
         complete: complete,
         testFunc: test
+    }
+});
+
+Vue.component('congrats', {
+    template: '#congratsTpl',
+    data: {
+        choices: ['Nice One!', 'Good Job!', 'Feeling Good!']
+    },
+    computed: {
+        msg: function(){
+            var l = this.choices.length;
+            var i = Math.floor(Math.random()*l);
+            console.log(l, i);
+            return this.choices[i];
+        }
+    },
+    ready: function() {
+        $(this.$el).animate({opacity: '1', marginTop: '20px'}, 300);
+        this.$on('congratsFade', function(index, callback){
+            if (index == this.index) {
+                $(this.$el).animate({marginTop: '100%', opacity: 0}, 300).promise().done(function(){setTimeout(callback, 200);});
+            }
+        });
     }
 });
 

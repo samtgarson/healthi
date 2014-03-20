@@ -84,7 +84,6 @@ input, select {
   font-weight: '300';
   font-style: 'normal';
 }
-
 @font-face {
   font-family: 'GMed';
   src: url("../fonts/gothamrnd-medium.eot");
@@ -92,7 +91,6 @@ input, select {
   font-weight: '500';
   font-style: 'normal';
 }
-
 @font-face {
   font-family: 'GLight';
   src: url("../fonts/gothamrnd-light.eot");
@@ -100,7 +98,6 @@ input, select {
   font-weight: '100';
   font-style: 'normal';
 }
-
 /* easeInOutQuart */
 .icon, .home footer ul#news li:after {
   font-family: 'icomoon';
@@ -445,7 +442,7 @@ section.menu ul li .arrow {
   height: 100%;
   position: relative;
   opacity: 1;
-  transition: margin-top 500ms cubic-bezier(0.77, 0, 0.175, 1), opacity 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition: margin 500ms cubic-bezier(0.77, 0, 0.175, 1), opacity 500ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 .home .slider-content .slidee.goals .module:before {
   content: '';
@@ -465,11 +462,18 @@ section.menu ul li .arrow {
   transition-delay: 0ms !important;
   transition: 200ms !important;
 }
-.home .slider-content .slidee.goals .module.plain.v-leave {
+.home .slider-content .slidee.goals .module.plain {
   opacity: 0;
+  margin-top: -100px;
+  font-family: GMed;
+}
+.home .slider-content .slidee.goals .module.plain .icon, .home .slider-content .slidee.goals .module.plain footer ul#news li:after, .home footer ul#news .slider-content .slidee.goals .module.plain li:after {
+  margin-right: .4em;
+  font-size: 1.2em;
+  vertical-align: bottom;
 }
 .home .slider-content .slidee.goals .module.v-leave {
-  margin-top: 100%;
+  margin-top: 200%;
 }
 .home .slider-content .slidee.goals .module ul {
   bottom: 10px;

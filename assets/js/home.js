@@ -24,13 +24,15 @@ function homeInit() {
 
 // Replace completed Card
 function replaceCard (index) {
-    var url = "http://www.json-generator.com/j/cfFuVRUpSG?indent=4";
-    var i = Math.floor((Math.random()*2));
+    var url = "http://www.json-generator.com/j/cfSWgCFUqG?indent=4";
     $.getJSON(url, function(data) {
-        var newGoal = data[i];
+        var newGoal = data;
         setTimeout(function(){
-            app.goals.$set(index, newGoal);
-        }, 400);
+            app.$broadcast('congratsFade', index, function(){
+                app.goals.$set(index, newGoal);
+            });
+            
+        }, 800);
     });
 }
 
