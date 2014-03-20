@@ -26,12 +26,11 @@ function homeInit() {
 function replaceCard (index) {
     var url = "http://www.json-generator.com/j/cfSWgCFUqG?indent=4";
     $.getJSON(url, function(data) {
-        var newGoal = data;
+        var newGoal = data; // Load new goal
         setTimeout(function(){
-            app.$broadcast('congratsFade', index, function(){
-                app.goals.$set(index, newGoal);
+            app.$broadcast('congratsFade', index, function(){ // Fade out message
+                app.goals.$set(index, newGoal); // Insert new goal
             });
-            
         }, 800);
     });
 }

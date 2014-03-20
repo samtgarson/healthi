@@ -2,38 +2,56 @@
 Vue.component('card', {
     template: '#cardTpl',
     data: {
-        ticks: []
+        ticks: [],
+        skipped: false
     },
     computed: {
         completed: function() {
-            return (this.done >= this.repeat);
+            if (this.skipped) return true;
+            else return (this.done >= this.repeat);
         }
     },
     ready: cardReady,
     methods: {
         complete: complete,
+        skip: skip,
         testFunc: test
     }
 });
 
+// Register completion message
 Vue.component('congrats', {
     template: '#congratsTpl',
     data: {
         choices: ['Nice One!', 'Good Job!', 'Feeling Good!']
     },
     computed: {
+        skipped: function() {
+            return this.$parent.skipped; // Get the skipped boolean
+        },
         msg: function(){
-            var l = this.choices.length;
-            var i = Math.floor(Math.random()*l);
-            console.log(l, i);
-            return this.choices[i];
+            if (this.skipped) return 'Skipped.';
+            else { // Return random congrats message
+                var l = this.choices.length;
+                var i = Math.floor(Math.random()*l);
+                console.log(l, i);
+                return this.choices[i];
+            }
+        },
+        icon: function () { // Return correct icon
+            if (this.skipped) return 's';
+            else return 'T';
         }
     },
     ready: function() {
-        $(this.$el).animate({opacity: '1', marginTop: '20px'}, 300);
+        $(this.$el).animate({opacity: '1', marginTop: '20px'}, 300); // Fade in Message
         this.$on('congratsFade', function(index, callback){
             if (index == this.index) {
-                $(this.$el).animate({marginTop: '100%', opacity: 0}, 300).promise().done(function(){setTimeout(callback, 200);});
+                $(this.$el)
+                    .animate({marginTop: '100%', opacity: 0}, 300)
+                    .promise().done(function(){
+                        setTimeout(callback, 200);
+                    });
             }
         });
     }
@@ -62,4 +80,10 @@ function complete() {
     if (this.done == this.repeat) {
         this.$dispatch('replaceCard', this.$index);
     }
+}
+
+// Skip a task
+function skip() {
+    this.skipped = true;
+    this.$dispatch('replaceCard', this.$index);
 }
