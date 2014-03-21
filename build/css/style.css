@@ -418,25 +418,65 @@ section.menu ul li .arrow {
 .home .slider-content .slidee .module.plain {
   background-color: transparent;
 }
-.home .slider-content .slidee .module div.vcentered {
+.home .slider-content .slidee .module div.goalMain {
   text-align: center;
   font-size: 1.6em;
   font-family: GLight;
   line-height: normal;
   transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
-  margin-top: -40px;
+  margin-top: -110px;
+  height: 10%;
 }
-.home .slider-content .slidee .module div.vcentered p {
+.home .slider-content .slidee .module div.goalMain p {
   font-family: GLight;
+  transition: opacity 300ms;
+  transition-delay: 200ms;
 }
-.home .slider-content .slidee .module div.vcentered div.subject {
+.home .slider-content .slidee .module div.goalMain div.subject {
   font-family: GBook;
   font-size: 1.3em;
   height: 1em;
   margin-bottom: .3em;
+  transition: all 300ms;
+  transition-delay: 200ms;
+}
+.home .slider-content .slidee .module div.goalInfo {
+  opacity: 1;
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition-delay: 0ms;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 200px;
+  margin-top: -100px;
+  padding: 0 1em;
+  text-align: left;
+  box-sizing: border-box;
+  font-family: GLight;
+}
+.home .slider-content .slidee .module div.goalInfo.v-enter, .home .slider-content .slidee .module div.goalInfo.v-leave {
+  opacity: 0;
+  margin-top: -80px !important;
 }
 .home .slider-content .slidee.goals.slideeClosed .module {
   margin-top: -100%;
+}
+.home .slider-content .slidee.flipped .goalMain {
+  height: 100% !important;
+  margin-top: -60px !important;
+  transition-delay: 0ms !important;
+}
+.home .slider-content .slidee.flipped .goalMain p {
+  opacity: 0;
+  transition-delay: 0ms !important;
+}
+.home .slider-content .slidee.flipped .goalMain .subject {
+  font-size: .9em !important;
+  font-family: GMed;
+  transition-delay: 0ms !important;
+}
+.home .slider-content .slidee.flipped .goalInfo {
+  transition-delay: 100ms !important;
 }
 .home .slider-content .slidee.goals .module {
   height: 100%;
@@ -450,7 +490,7 @@ section.menu ul li .arrow {
   height: 100%;
   vertical-align: middle;
   margin-right: -0.25em;
-  /* Adjusts for spacing */
+  transition: height 500ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 .home .slider-content .slidee.goals .module div.vcentered {
   vertical-align: middle;
@@ -465,7 +505,8 @@ section.menu ul li .arrow {
 .home .slider-content .slidee.goals .module.plain {
   opacity: 0;
   margin-top: -100px;
-  font-family: GMed;
+  font-family: GBook;
+  font-size: 2em;
 }
 .home .slider-content .slidee.goals .module.plain .icon, .home .slider-content .slidee.goals .module.plain footer ul#news li:after, .home footer ul#news .slider-content .slidee.goals .module.plain li:after {
   margin-right: .4em;
@@ -493,23 +534,23 @@ section.menu ul li .arrow {
   font-size: 1em;
   line-height: 28px;
   opacity: .25;
-  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
   text-indent: -4000px;
 }
 .home .slider-content .slidee.goals .module ul li:nth-child(1) {
-  transition-delay: 45ms;
+  transition-delay: 60ms;
 }
 .home .slider-content .slidee.goals .module ul li:nth-child(2) {
-  transition-delay: 90ms;
+  transition-delay: 120ms;
 }
 .home .slider-content .slidee.goals .module ul li:nth-child(3) {
-  transition-delay: 135ms;
-}
-.home .slider-content .slidee.goals .module ul li:nth-child(4) {
   transition-delay: 180ms;
 }
+.home .slider-content .slidee.goals .module ul li:nth-child(4) {
+  transition-delay: 240ms;
+}
 .home .slider-content .slidee.goals .module ul li:nth-child(5) {
-  transition-delay: 225ms;
+  transition-delay: 300ms;
 }
 .home .slider-content .slidee.goals .module ul li.done {
   opacity: 1;
@@ -557,6 +598,7 @@ section.menu ul li .arrow {
   margin-top: 12em;
   transition: margin-top 500ms cubic-bezier(0.77, 0, 0.175, 1);
   vertical-align: top;
+  cursor: pointer;
 }
 .home footer ul#tab li:nth-child(1) {
   transition-delay: -30ms;

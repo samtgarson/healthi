@@ -81,7 +81,7 @@
                     </div>
                     <div class="module"><p>Home 2</p></div>
                 </div>
-                <div v-component="card" class="slidee goals slideeClosed" v-ref="cardref" v-repeat="goals">
+                <div v-component="card" class="slidee goals slideeClosed" v-ref="cardref" v-repeat="goals" v-class="flipped:flipped">
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
         <ul id="tab">
             <li id="done" v-on="click:this.$.cardref[this.currentGoal].complete()"><div class="icon">t</div><label>Done</label></li>
             <li id="skip" v-on="click:this.$.cardref[this.currentGoal].skip()"><div class="icon">s</div><label>Skip</label></li>
-            <li id="info"><div class="icon">i</div><label>More Info</label></li>
+            <li id="info" v-on="click:this.$.cardref[this.currentGoal].flip()"><div class="icon">i</div><label>More Info</label></li>
             <li id="comment"><div class="icon">c</div><label>Comment</label></li>
         </ul>
         <ul id="news">
@@ -106,11 +106,12 @@
 
 <script type="text/template" id="cardTpl">
     <div v-transition v-if="!completed" class="module" v-class="goalClosed:currentGoal != $index">
-        <div class="vcentered">
+        <div class="goalMain vcentered">
             <p>{{verb | capitalize}}</p>
             <div class="subject capitalize">{{subject}}</div>
             <p>{{timeframe | capitalize}}</p>
         </div>
+        <div class="goalInfo" v-if="flipped" v-transition v-html="info"></div>
         <ul>
             <li v-repeat="ticks" class="icon" v-class="done: $value">t</li>
         </ul>

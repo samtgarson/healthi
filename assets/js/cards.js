@@ -3,7 +3,8 @@ Vue.component('card', {
     template: '#cardTpl',
     data: {
         ticks: [],
-        skipped: false
+        skipped: false,
+        flipped: false
     },
     computed: {
         completed: function() {
@@ -15,6 +16,7 @@ Vue.component('card', {
     methods: {
         complete: complete,
         skip: skip,
+        flip: flip,
         testFunc: test
     }
 });
@@ -30,7 +32,7 @@ Vue.component('congrats', {
             return this.$parent.skipped; // Get the skipped boolean
         },
         msg: function(){
-            if (this.skipped) return 'Skipped.';
+            if (this.skipped) return 'Skipped';
             else { // Return random congrats message
                 var l = this.choices.length;
                 var i = Math.floor(Math.random()*l);
@@ -39,7 +41,7 @@ Vue.component('congrats', {
             }
         },
         icon: function () { // Return correct icon
-            if (this.skipped) return 's';
+            if (this.skipped) return 'T';
             else return 'T';
         }
     },
@@ -48,9 +50,9 @@ Vue.component('congrats', {
         this.$on('congratsFade', function(index, callback){
             if (index == this.index) {
                 $(this.$el)
-                    .animate({marginTop: '100%', opacity: 0}, 300)
+                    .animate({marginTop: '100%', opacity: 0}, 100) // Fade out Message
                     .promise().done(function(){
-                        setTimeout(callback, 200);
+                        setTimeout(callback, 200); // Insert new goal
                     });
             }
         });
@@ -80,6 +82,11 @@ function complete() {
     if (this.done == this.repeat) {
         this.$dispatch('replaceCard', this.$index);
     }
+}
+
+// Flip a card
+function flip() {
+    this.flipped = !this.flipped;
 }
 
 // Skip a task

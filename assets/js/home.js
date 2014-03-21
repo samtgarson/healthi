@@ -71,6 +71,7 @@ function navDuring(x, y) {
     $('.selector ul').css('margin-left', (x*240)-240 + 'px');
     var newStep = Math.abs(this.getStep()[0]-4);
     app.$.View.currentGoal = newStep-1;
+    if (currentStep != newStep) goalFunc(currentStep);
     currentStep = newStep;
     sliderTitle(x);
 }
@@ -83,6 +84,8 @@ function contentDuring(x, y) {
     }
     var newStep = Math.abs(this.getStep()[0]-4);
     app.$.View.currentGoal = newStep-1;
+    if (currentStep != newStep) goalFunc(currentStep);
+    
     currentStep = newStep;
     sliderTitle(x);
 }
@@ -98,7 +101,10 @@ function sliderTitle(x) {
 
 // Entrance animation for cards
 function goalFunc(index) {
-    
+    // Reset all cards from info state
+    for (var i in app.goals) {
+        app.goals[i].flipped = false;
+    }
     // $('.slidee.goals .module').eq(index-1).removeClass('goalClosed');
     // $('.slidee.goals .module').not(':eq(' + (index-1) + ')').addClass('goalClosed');
 }
