@@ -36,21 +36,20 @@ Vue.component('congrats', {
             else { // Return random congrats message
                 var l = this.choices.length;
                 var i = Math.floor(Math.random()*l);
-                console.log(l, i);
                 return this.choices[i];
             }
         },
-        icon: function () { // Return correct icon
+        icon: function () { // Return icon
             if (this.skipped) return 'T';
             else return 'T';
         }
     },
     ready: function() {
-        $(this.$el).animate({opacity: '1', marginTop: '20px'}, 300); // Fade in Message
+        $(this.$el).animate({opacity: '1', marginTop: '10px'}, 300); // Fade in Message
         this.$on('congratsFade', function(index, callback){
             if (index == this.index) {
                 $(this.$el)
-                    .animate({marginTop: '100%', opacity: 0}, 100) // Fade out Message
+                    .animate({marginTop: '500%', opacity: 0}, 100) // Fade out Message
                     .promise().done(function(){
                         setTimeout(callback, 200); // Insert new goal
                     });
@@ -77,6 +76,7 @@ function cardReady() {
 
 // Complete a task
 function complete() {
+    this.flipped = false;
     this.done++;
     this.ticks.$set(this.done-1, true);
     if (this.done == this.repeat) {
@@ -91,6 +91,7 @@ function flip() {
 
 // Skip a task
 function skip() {
+    this.flipped = false;
     this.skipped = true;
     this.$dispatch('replaceCard', this.$index);
 }

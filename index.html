@@ -110,8 +110,9 @@
             <p>{{verb | capitalize}}</p>
             <div class="subject capitalize">{{subject}}</div>
             <p>{{timeframe | capitalize}}</p>
+            <div class="goalInfo" v-if="flipped" v-transition v-html="info"></div>
         </div>
-        <div class="goalInfo" v-if="flipped" v-transition v-html="info"></div>
+        
         <ul>
             <li v-repeat="ticks" class="icon" v-class="done: $value">t</li>
         </ul>

@@ -424,13 +424,12 @@ section.menu ul li .arrow {
   font-family: GLight;
   line-height: normal;
   transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
-  margin-top: -110px;
-  height: 10%;
 }
 .home .slider-content .slidee .module div.goalMain p {
   font-family: GLight;
-  transition: opacity 300ms;
+  transition: all 300ms;
   transition-delay: 200ms;
+  margin-top: 0em;
 }
 .home .slider-content .slidee .module div.goalMain div.subject {
   font-family: GBook;
@@ -444,39 +443,14 @@ section.menu ul li .arrow {
   opacity: 1;
   transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
   transition-delay: 0ms;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  height: 200px;
-  margin-top: -100px;
-  padding: 0 1em;
   text-align: left;
-  box-sizing: border-box;
+  font-size: 0.6em;
   font-family: GLight;
+  height: 240px;
 }
 .home .slider-content .slidee .module div.goalInfo.v-enter, .home .slider-content .slidee .module div.goalInfo.v-leave {
   opacity: 0;
-  margin-top: -80px !important;
-}
-.home .slider-content .slidee.goals.slideeClosed .module {
-  margin-top: -100%;
-}
-.home .slider-content .slidee.flipped .goalMain {
-  height: 100% !important;
-  margin-top: -60px !important;
-  transition-delay: 0ms !important;
-}
-.home .slider-content .slidee.flipped .goalMain p {
-  opacity: 0;
-  transition-delay: 0ms !important;
-}
-.home .slider-content .slidee.flipped .goalMain .subject {
-  font-size: .9em !important;
-  font-family: GMed;
-  transition-delay: 0ms !important;
-}
-.home .slider-content .slidee.flipped .goalInfo {
-  transition-delay: 100ms !important;
+  height: 0px;
 }
 .home .slider-content .slidee.goals .module {
   height: 100%;
@@ -489,7 +463,7 @@ section.menu ul li .arrow {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-  margin-right: -0.25em;
+  margin-right: -0.4em;
   transition: height 500ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 .home .slider-content .slidee.goals .module div.vcentered {
@@ -504,9 +478,9 @@ section.menu ul li .arrow {
 }
 .home .slider-content .slidee.goals .module.plain {
   opacity: 0;
-  margin-top: -100px;
+  margin-top: -200px;
   font-family: GBook;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 .home .slider-content .slidee.goals .module.plain .icon, .home .slider-content .slidee.goals .module.plain footer ul#news li:after, .home footer ul#news .slider-content .slidee.goals .module.plain li:after {
   margin-right: .4em;
@@ -555,6 +529,25 @@ section.menu ul li .arrow {
 .home .slider-content .slidee.goals .module ul li.done {
   opacity: 1;
   text-indent: 0;
+}
+.home .slider-content .slidee.goals.slideeClosed .module {
+  margin-top: -100%;
+}
+.home .slider-content .slidee.flipped .goalMain {
+  transition-delay: 0ms !important;
+}
+.home .slider-content .slidee.flipped .goalMain p {
+  opacity: 0;
+  transition-delay: 0ms !important;
+  margin-top: -1em !important;
+}
+.home .slider-content .slidee.flipped .goalMain .subject {
+  font-size: .9em !important;
+  transition-delay: 0ms !important;
+  margin-bottom: 0.75em !important;
+}
+.home .slider-content .slidee.flipped .goalInfo {
+  transition-delay: 00ms !important;
 }
 .home footer {
   background: white;
