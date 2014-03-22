@@ -31,7 +31,7 @@ function replaceCard (index) {
             app.$broadcast('congratsFade', index, function(){ // Fade out message
                 app.goals.$set(index, newGoal); // Insert new goal
             });
-        }, 800);
+        }, 1100);
     });
 }
 

@@ -8,9 +8,18 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-imagemin");
     grunt.loadNpmTasks('grunt-html-build');
     grunt.loadNpmTasks('grunt-responsive-images');
+    grunt.loadNpmTasks('grunt-exec');
  
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    // Start MAMP Server
+
+    exec: {
+      serverup: {
+        command: '/Applications/MAMP/bin/start.sh'
+      }
+    },
 
     //Minify JS
 
@@ -130,6 +139,8 @@ module.exports = function(grunt) {
  
   // build
   grunt.registerTask('default', ['uglify:build', 'sass:build', 'imagemin']);
+  // dev
+  grunt.registerTask('dev', ['exec:serverup', 'watch']);
 
  
  

@@ -45,11 +45,17 @@ Vue.component('congrats', {
         }
     },
     ready: function() {
-        $(this.$el).animate({opacity: '1', marginTop: '10px'}, 300); // Fade in Message
+        var e = this.$el;
+        setTimeout(function(){
+            $(e)
+                .children('div.subject')
+                .animate({opacity: 1, marginTop: '0px'}, 200, 'easeOutQuint'); // Fade in Message
+        }, 500);
         this.$on('congratsFade', function(index, callback){
             if (index == this.index) {
                 $(this.$el)
-                    .animate({marginTop: '500%', opacity: 0}, 100) // Fade out Message
+                    .children('div.subject')
+                    .animate({marginTop: '50px', opacity: 0}, 200, 'easeInQuint') // Fade out Message
                     .promise().done(function(){
                         setTimeout(callback, 200); // Insert new goal
                     });
