@@ -8,11 +8,18 @@ Vue.component('home', {
         name: 'home',
         title: 'home',
         currentGoal: -1,
+        skipping: false
     },
     methods: {
         init: homeInit,
         replaceCard: replaceCard
     }
+});
+
+// Register Skipper component
+Vue.component('skipper', {
+    template: '#skipTpl',
+    replace: true
 });
 
 // Init Home component
@@ -101,6 +108,9 @@ function sliderTitle(x) {
 
 // Entrance animation for cards
 function goalFunc(index) {
+    // Reset all cards from skip state
+    app.$.View.skipping = false;
+
     // Reset all cards from info state
     for (var i in app.goals) {
         app.goals[i].flipped = false;

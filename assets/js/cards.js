@@ -98,6 +98,7 @@ function flip() {
 // Skip a task
 function skip() {
     this.flipped = false;
-    this.skipped = true;
-    this.$dispatch('replaceCard', this.$index);
+    this.$parent.skipping = true;
+    // this.skipped = true;
+    // this.$dispatch('replaceCard', this.$index);
 }

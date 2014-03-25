@@ -86,13 +86,14 @@
             </div>
         </div>
     </div>
-    <footer class="closed">
+    <footer class="closed" v-class="skip:skipping">
         <ul id="tab">
             <li id="done" v-on="click:this.$.cardref[this.currentGoal].complete()"><div class="icon">t</div><label>Done</label></li>
             <li id="skip" v-on="click:this.$.cardref[this.currentGoal].skip()"><div class="icon">s</div><label>Skip</label></li>
             <li id="info" v-on="click:this.$.cardref[this.currentGoal].flip()"><div class="icon">i</div><label>More Info</label></li>
             <li id="comment"><div class="icon">c</div><label>Comment</label></li>
         </ul>
+        <div v-component="skipper" v-if="skipping"></div>
         <ul id="news">
             <li class="closed"><img src="build/img/news/sam.jpg" /><span>Sam</span> wrote a new blog post</li>
             <li class="closed"><img src="build/img/news/sam.jpg" />New Instagram by <span>Callum</span></li>
@@ -122,6 +123,13 @@
 </script>
 <script type="text/template" id="congratsTpl">
     <div class="subject capitalize vcentered"><span class="icon">{{icon}}</span>{{msg}}</div>
+</script>
+<script type="text/template" id="skipTpl">
+    <ul id="skipper" v-transition>
+        <li>Don't like this goal</li>
+        <li>Don't like this food</li>
+        <!-- <li>Cancel</li> -->
+    </ul>
 </script>
 <script type="text/template" id="loginTpl">
 	<button id="login" v-on="click: loginClick">Login!</button>
