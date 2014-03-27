@@ -84,7 +84,6 @@ input, select {
   font-weight: '300';
   font-style: 'normal';
 }
-
 @font-face {
   font-family: 'GMed';
   src: url("../fonts/gothamrnd-medium.eot");
@@ -92,7 +91,6 @@ input, select {
   font-weight: '500';
   font-style: 'normal';
 }
-
 @font-face {
   font-family: 'GLight';
   src: url("../fonts/gothamrnd-light.eot");
@@ -100,7 +98,6 @@ input, select {
   font-weight: '100';
   font-style: 'normal';
 }
-
 /* easeInOutQuart */
 .icon, .home footer ul#news li:after {
   font-family: 'icomoon';
@@ -622,6 +619,7 @@ section.menu ul li .arrow {
   margin: .5em auto .1em auto;
   line-height: 40px;
   font-size: 1.4em;
+  overflow: hidden;
 }
 .home footer ul#tab li#done div {
   background-color: #ff4a98;

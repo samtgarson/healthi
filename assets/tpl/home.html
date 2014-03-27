@@ -33,10 +33,10 @@
     </div>
     <footer class="closed">
         <ul id="tab">
-            <li v-component="tab-done" id="done" v-on="click:click"></li>
-            <li v-component="tab-skip" id="skip" v-on="click:click"></li>
-            <li v-component="tab-info" id="info" v-on="click:click"></li>
-            <li v-component="tab-comment" id="comment" v-on="click:click"></li>
+            <li v-ref="tabDone" v-component="tab-done" id="done" v-on="click:click"></li>
+            <li v-ref="tabSkip" v-component="tab-skip" id="skip" v-on="click:click"></li>
+            <li v-ref="tabInfo" v-component="tab-info" id="info" v-on="click:click"></li>
+            <li v-ref="tabComment" v-component="tab-comment" id="comment" v-on="click:click"></li>
         </ul>
         <div v-component="skipper" v-if="skipping"></div>
         <ul id="news">

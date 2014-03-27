@@ -14,11 +14,11 @@
 
     <link rel="stylesheet" href="build/css/style.css" />
     <!-- <link rel="shortcut icon" type="image/x-icon" href="build/img/favicon.ico"> -->
-    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/77c7ab5335/UntitledProject1/style.css">
+    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/9fdd585063/UntitledProject1/style.css">
     <link href="apple-touch-icon.png" rel="apple-touch-icon">
 
     <script>
-        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
     </script>
 
     <!--[if lt IE 9]>
@@ -88,10 +88,10 @@
     </div>
     <footer class="closed">
         <ul id="tab">
-            <li v-component="tab-done" id="done" v-on="click:click"></li>
-            <li v-component="tab-skip" id="skip" v-on="click:click"></li>
-            <li v-component="tab-info" id="info" v-on="click:click"></li>
-            <li v-component="tab-comment" id="comment" v-on="click:click"></li>
+            <li v-ref="tabDone" v-component="tab-done" id="done" v-on="click:click"></li>
+            <li v-ref="tabSkip" v-component="tab-skip" id="skip" v-on="click:click"></li>
+            <li v-ref="tabInfo" v-component="tab-info" id="info" v-on="click:click"></li>
+            <li v-ref="tabComment" v-component="tab-comment" id="comment" v-on="click:click"></li>
         </ul>
         <div v-component="skipper" v-if="skipping"></div>
         <ul id="news">
@@ -126,8 +126,8 @@
 </script>
 <script type="text/template" id="skipTpl">
     <ul id="skipper" v-transition>
-        <li>Don't like this goal</li>
-        <li>Don't like this food</li>
+        <li><span class="icon">D</span>This goal</li>
+        <li><span class="icon">D</span>This food</li>
         <!-- <li>Cancel</li> -->
     </ul>
 </script>

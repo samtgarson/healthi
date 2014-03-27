@@ -97,6 +97,10 @@ function flip() {
 
 // Skip a task
 function skip() {
+
+    //Reset tab button
+    // var skipTab = app.$.View.$.tabSkip;
+    // skipTab.change(skipTab, 's', 'skip');
     this.flipped = false;
     this.$parent.skipping = true;
     // this.skipped = true;
