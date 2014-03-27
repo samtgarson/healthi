@@ -71,11 +71,11 @@
 </script>
 <script type="text/template" id="skipTpl">
     <ul id="skipper" v-transition>
-        <li>Don't like this goal</li>
-        <li>Don't like this food</li>
+        <li v-on="click:skip">Don't like this goal</li>
+        <li v-on="click:skip">Don't like this food</li>
         <!-- <li>Cancel</li> -->
     </ul>
 </script>
 <script type="text/template" id="tabTpl">
-    <div class="icon">{{icon}}</div><label>{{text}}</label>
+    <div class="icon">{{icon}}</div><label v-class="cancel:text=='cancel'">{{text}}</label>
 </script>

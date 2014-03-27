@@ -1,5 +1,3 @@
-tab
-
 //Register Tab bar buttons
 Vue.component('tab-done', {
     template: '#tabTpl',
@@ -8,7 +6,11 @@ Vue.component('tab-done', {
         text: 'done'
     },
     methods: {
-        click: function() {app.$.View.$.cardref[app.$.View.currentGoal].complete();},
+        click: function() {
+            app.$.View.$.cardref[app.$.View.currentGoal].complete();
+            app.$.View.$.tabInfo.reset(); // Reset info state
+            app.$.View.$.tabSkip.reset(); // Reset skip state
+        },
         change: tabChange,
         reset: function() {
             if (this.text == 'cancel') {
@@ -31,7 +33,6 @@ Vue.component('tab-skip', {
             if (this.text=="skip") {
                 this.change(this, 'b', 'cancel'); // Change text
                 app.$.View.skipping = true; // open skip drawer
-                // app.$.View.$.cardref[app.$.View.currentGoal].skip(); // Skip Card
             } else {
                 this.reset();
             }
@@ -93,7 +94,13 @@ Vue.component('tab-comment', {
 // Register Skipper component
 Vue.component('skipper', {
     template: '#skipTpl',
-    replace: true
+    replace: true,
+    methods: {
+        skip: function() {
+            app.$.View.$.cardref[app.$.View.currentGoal].skip(); // Skip Card
+            app.$.View.$.tabSkip.reset();
+        }
+    }
 });
 
 // Change tab icon

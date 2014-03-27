@@ -82,7 +82,6 @@ function cardReady() {
 
 // Complete a task
 function complete() {
-    this.flipped = false;
     this.done++;
     this.ticks.$set(this.done-1, true);
     if (this.done == this.repeat) {
@@ -101,8 +100,6 @@ function skip() {
     //Reset tab button
     // var skipTab = app.$.View.$.tabSkip;
     // skipTab.change(skipTab, 's', 'skip');
-    this.flipped = false;
-    this.$parent.skipping = true;
-    // this.skipped = true;
-    // this.$dispatch('replaceCard', this.$index);
+    this.skipped = true;
+    this.$dispatch('replaceCard', this.$index);
 }

@@ -102,6 +102,10 @@ function sliderTitle(x) {
 
 // Entrance animation for cards
 function goalFunc(index) {
+    // Reset tab bars
+    app.$.View.$.tabSkip.reset();
+    app.$.View.$.tabInfo.reset();
+
     // Reset all cards from skip state
     app.$.View.skipping = false;
 

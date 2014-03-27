@@ -338,6 +338,10 @@ footer {
             label {
                 font-size: .9em;
                 font-family: GBook;
+
+                &.cancel {
+                    font-family: GMed;
+                }
             }
 
             div {
@@ -465,5 +469,6 @@ ul#skipper {
         display: inline-block;
         text-align: center;
         font-family: GMed;
+        cursor: poiner;
     }
 }

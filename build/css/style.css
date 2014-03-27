@@ -611,6 +611,9 @@ section.menu ul li .arrow {
   font-size: .9em;
   font-family: GBook;
 }
+.home footer ul#tab li label.cancel {
+  font-family: GMed;
+}
 .home footer ul#tab li div {
   width: 40px;
   height: 40px;
@@ -733,4 +736,5 @@ section.menu ul li .arrow {
   display: inline-block;
   text-align: center;
   font-family: GMed;
+  cursor: poiner;
 }
