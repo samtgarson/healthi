@@ -64,7 +64,7 @@ Vue.component('tab-info', {
         },
         change: tabChange,
         reset: function() {
-            app.$.View.$.cardref[app.$.View.currentGoal].flip();
+            app.$.View.$.cardref[app.$.View.currentGoal].flipped == false;
             if (this.text == 'cancel') {
                 this.change(this, 'i', 'info');
             }
