@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-html-build');
     grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-notify');
  
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -106,19 +107,40 @@ module.exports = function(grunt) {
       }
     },
 
+    notify: {
+      sass: {
+        options: {
+          title: "Sass compiled",
+          message: "Ready to go"
+        }
+      },
+      uglify: {
+        options: {
+          title: "JS compiled",
+          message: "Ready to go"
+        }
+      },
+      html: {
+        options: {
+          title: "HTML compiled",
+          message: "Ready to go"
+        }
+      }
+    },
+
     // Watch
  
     watch: {
       htmlbuild: {
         files: ['assets/index.html', 'assets/tpl/*.html'],
-        tasks: ['htmlbuild:build'],
+        tasks: ['htmlbuild:build', 'notify:html'],
         options: {
             livereload: false
         }
       },
       scripts: {
           files: ['assets/js/*.js'],
-          tasks: ['uglify:dev'],
+          tasks: ['uglify:dev', 'notify:uglify'],
           options: {
               spawn: false,
               livereload: true
@@ -127,7 +149,7 @@ module.exports = function(grunt) {
 
       css: {
         files: 'assets/sass/*.scss',
-        tasks: ['sass:dev'],
+        tasks: ['sass:dev', 'notify:sass'],
         options: {
           livereload: true
         }
