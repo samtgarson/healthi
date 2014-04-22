@@ -84,6 +84,7 @@ input, select {
   font-weight: '300';
   font-style: 'normal';
 }
+
 @font-face {
   font-family: 'GMed';
   src: url("../fonts/gothamrnd-medium.eot");
@@ -91,6 +92,7 @@ input, select {
   font-weight: '500';
   font-style: 'normal';
 }
+
 @font-face {
   font-family: 'GLight';
   src: url("../fonts/gothamrnd-light.eot");
@@ -98,6 +100,15 @@ input, select {
   font-weight: '100';
   font-style: 'normal';
 }
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot");
+  src: url("../fonts/icomoon.ttf") format("truetype"), url("../fonts/icomoon.svg#icomoon") format("svg");
+  font-weight: '100';
+  font-style: 'normal';
+}
+
 /* easeInOutQuart */
 .icon, .home footer ul#news li:after {
   font-family: 'icomoon';

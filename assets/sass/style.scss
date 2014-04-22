@@ -24,6 +24,14 @@
     font-weight: '100';
     font-style: 'normal';
 }
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot');
+    src: url('../fonts/icomoon.ttf') format('truetype'),
+         url('../fonts/icomoon.svg#icomoon') format('svg');
+    font-weight: '100';
+    font-style: 'normal';
+}
 
 
 @mixin gradient($from, $to, $dist) {
