@@ -25,8 +25,14 @@ function homeInit() {
 
 // Replace completed Card
 function replaceCard (index) {
-    var url = "http://www.json-generator.com/j/cfSWgCFUqG?indent=4";
-    $.getJSON(url, function(data) {
+    $.ajax({
+        type: 'GET',
+        url: 'http://jsonstub.com/goal',
+        beforeSend: function (request) {
+            request.setRequestHeader('JsonStub-User-Key', '8e131e3f-7886-49d2-9c9d-189a0a98070a');
+            request.setRequestHeader('JsonStub-Project-Key', '93627ecc-f971-4ad7-98c0-ac1f1e1c803e');
+        }
+    }).done(function (data) {
         var newGoal = data; // Load new goal
         setTimeout(function(){
             app.$broadcast('congratsFade', index, function(){ // Fade out message
