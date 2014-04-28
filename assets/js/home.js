@@ -24,6 +24,8 @@ function homeInit() {
 }
 
 // Replace completed Card
+//      Wait for new card to load 
+//      before removing old card.
 function replaceCard (index) {
     $.ajax({
         type: 'GET',
@@ -34,9 +36,10 @@ function replaceCard (index) {
         }
     }).done(function (data) {
         var newGoal = data; // Load new goal
-        setTimeout(function(){
+        // Tell old card to fade and pass new card function as callback on completion.
+        setTimeout(function(){ 
             app.$broadcast('congratsFade', index, function(){ // Fade out message
-                app.goals.$set(index, newGoal); // Insert new goal
+                app.goals.$set(index, newGoal); // Insert new goal -- CALLBACK
             });
         }, 1100);
     });
